@@ -1,0 +1,54 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #0078D7;
+  color: #000;
+  overflow: hidden;
+}
+
+#desktop {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  color: #fff;
+  text-shadow: 1px 1px 2px #000;
+}
+
+.icon img {
+  width: 64px;
+  height: 64px;
+}
+
+.window {
+  display: none;
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  width: 400px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 2px 2px 12px rgba(0,0,0,0.5);
+}
+
+.title-bar {
+  background: linear-gradient(to right, #e0e0e0, #c0c0c0);
+  padding: 0.5rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  cursor: move;
+}
+
+.content {
+  padding: 1rem;
+}

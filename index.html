@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Moss & Moonlight</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="https://icons.iconarchive.com/icons/custom-icon-design/lovely-weather-2/512/Moon-icon.png">
+</head>
+<body>
+  <div id="desktop">
+    <div class="icon" onclick="openWindow('about')">
+      <img src="folder.png" alt="About Me"/><span>About Me</span>
+    </div>
+    <div class="icon" onclick="openWindow('commissions')">
+      <img src="folder.png" alt="Commissions"/><span>Commissions</span>
+    </div>
+    <div class="icon" onclick="openWindow('contact')">
+      <img src="shortcut.png" alt="Contact"/><span>Contact</span>
+    </div>
+    <div class="icon" onclick="openWindow('nowPlaying')">
+      <img src="shortcut.png" alt="Now Playing"/><span>Now Playing</span>
+    </div>
+  </div>
+
+  <div id="windows">
+    <div class="window" id="about">
+      <div class="title-bar"><span>About Me</span><button onclick="closeWindow('about')">✕</button></div>
+      <div class="content">
+        <h2>✧ About Me</h2>
+        <p>Hello! I'm Aloe, a collage artist with a love for frogs, soft horror, and witchy aesthetics...</p>
+      </div>
+    </div>
+
+    <div class="window" id="commissions">
+      <div class="title-bar"><span>Commissions</span><button onclick="closeWindow('commissions')">✕</button></div>
+      <div class="content">
+        <h2>✶ Commissions</h2>
+        <p>I'm currently open for Photoshop-based commissions including RP icons, promos, collage art, profile edits, and Twitch overlays and panels.</p>
+        <h3>Menu & Pricing</h3>
+        <ul>
+          <li><strong>RP Icon Packs:</strong> 10 icons for $5, 20 for $8, 30 for $12</li>
+          <li><strong>Profile Picture Edits:</strong> $3 each</li>
+          <li><strong>Promo Graphics:</strong> Starting at $8</li>
+          <li><strong>Collage Art:</strong> Starting at $10</li>
+          <li><strong>Twitch Overlays/Panels:</strong> Starting at $12</li>
+        </ul>
+        <p>🔸 Larger projects may require a 25% deposit upfront. PayPal or Ko-fi is accepted.</p>
+        <form action="https://formspree.io/f/xnnpwewz" method="POST">
+          <label>Name:<br/><input type="text" name="name" required /></label><br/>
+          <label>Email:<br/><input type="email" name="email" required /></label><br/>
+          <label>Type:<br/>
+            <select name="type">
+              <option>RP Icons</option>
+              <option>Promos</option>
+              <option>Collage Art</option>
+              <option>Twitch Overlay</option>
+              <option>Other</option>
+            </select>
+          </label><br/>
+          <label>Description:<br/><textarea name="description" rows="5" required></textarea></label><br/>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="window" id="contact">
+      <div class="title-bar"><span>Contact</span><button onclick="closeWindow('contact')">✕</button></div>
+      <div class="content">
+        <h2>☙ Contact</h2>
+        <p>Email me at <strong>aloemoonflwr@gmail.com</strong> or Discord: <strong>AloeMoonflwr</strong></p>
+      </div>
+    </div>
+
+    <div class="window" id="nowPlaying">
+      <div class="title-bar"><span>Now Playing</span><button onclick="closeWindow('nowPlaying')">✕</button></div>
+      <div class="content">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/01lijiPQlAsnzK9nw31w8k?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
