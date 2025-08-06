@@ -336,7 +336,7 @@ a,
 }
 /* Desktop icons container */
 .icon {
-  position: absolute;
+  position: relative;
   z-index: 1;
 }
 
