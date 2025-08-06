@@ -557,14 +557,17 @@
   <hr>
 
   <ul>
-    <li onclick="document.getElementById('frog-secret').style.display = 'block'">
-      🐸 Secret Frog File
+    <li onclick="frogEasterEgg()">
+  🐸 Secret Frog File
     </li>
   </ul>
 </div>
     <div class="clock" id="clock"></div>
   </div>
-  
+<audio id="frog-scream">
+  <source src="screaming-frog.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>  
    <script>
     function openModal(id) {
       document.getElementById(id).style.display = 'block';
@@ -623,7 +626,17 @@
         minWidth: 300,
         containment: "document"
       });
-    });
+    }); 
+   function triggerFrogScream() {
+    const audio = document.getElementById('frog-scream');
+    audio.volume = 1.0; // Full volume
+    audio.play();
+
+    // Redirect after scream finishes (or just delay slightly)
+    setTimeout(() => {
+      window.location.href = 'https://www.mramphibian.com/frog-facts';
+    }, 3000); // 3-second delay
+  }   
   </script>
 </body>
 </html>
