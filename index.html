@@ -557,9 +557,7 @@
   <hr>
 
   <ul>
-    <li onclick="frogEasterEgg()">
-  🐸 Secret Frog File
-    </li>
+<a href="javascript:void(0);" onclick="triggerFrogScream()">🐸 Secret Frog File</a>
   </ul>
 </div>
     <div class="clock" id="clock"></div>
@@ -627,16 +625,23 @@
         containment: "document"
       });
     }); 
-   function triggerFrogScream() {
+   <script>
+  let frogClicked = false;
+
+  function triggerFrogScream() {
+    if (frogClicked) return;
+    frogClicked = true;
+
     const audio = document.getElementById('frog-scream');
-    audio.volume = 1.0; // Full volume
+    audio.volume = 1.0;
     audio.play();
 
-    // Redirect after scream finishes (or just delay slightly)
     setTimeout(() => {
       window.location.href = 'https://www.mramphibian.com/frog-facts';
-    }, 3000); // 3-second delay
-  }   
+    }, 3000); // Adjust delay to match sound length
+  }
+</script>
+
   </script>
 </body>
 </html>
