@@ -320,7 +320,8 @@ a,
 
   .taskbar button {
     flex: 1 1 45%;
-    margin: 0.25em;
+    margin: 0.25rem;
+    width: auto; /* Reset width for mobile */
   }
 }
 /* Add this to your CSS */
@@ -331,3 +332,4 @@ a,
     margin: 0 !important;
   }
 }
+
