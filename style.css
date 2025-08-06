@@ -46,41 +46,49 @@ body {
 } 
 .start-menu {
   position: absolute;
-  bottom: 60px; /* or adjust based on your taskbar */
+  bottom: 60px;
   left: 20px;
-  width: 220px;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  width: 240px;
+  background: rgba(30, 30, 30, 0.65); /* Darker glass */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 10px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
   padding: 10px;
   font-family: "Segoe UI", sans-serif;
-  color: #fff;
+  color: #f0f0f0; /* Lighter text */
   z-index: 1000;
 }
 
 .start-menu ul {
   list-style: none;
   padding: 0;
-  margin: 0 0 8px 0;
+  margin: 0;
 }
 
 .start-menu ul li {
+  display: flex;
+  align-items: center;
   padding: 6px 10px;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
   transition: background 0.2s ease;
+  color: #f0f0f0;
+  font-size: 15px;
 }
 
 .start-menu ul li:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .start-menu a {
-  color: #fff;
+  color: #f0f0f0;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
 }
 
 .start-menu a:hover {
@@ -90,7 +98,7 @@ body {
 .start-menu hr {
   border: none;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  margin: 8px 0;
+  margin: 10px 0;
 }
 .taskbar button {
   background: #a5d6a7;
