@@ -67,4 +67,55 @@ body {
   padding: 10px;
   text-align: left;
   color: white;
+} 
+.start-menu {
+  display: none;
+  position: fixed;
+  bottom: 50px;
+  left: 10px;
+  background: #c8e6c9;
+  border: 2px solid #81c784;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  padding: 10px;
+  z-index: 999;
 }
+
+.start-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.start-menu li {
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.start-menu li:hover {
+  background-color: #a5d6a7;
+}
+
+.taskbar button {
+  background: #a5d6a7;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.widget.clock-widget {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  background: #e8f5e9;
+  border: 2px solid #81c784;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 14px;
+}
+
