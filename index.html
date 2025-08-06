@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aloe's Desktop</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     body {
       margin: 0;
@@ -19,11 +21,15 @@
       color: #2e5d34;
     }
 
-     .desktop {
+ .desktop {
       display: flex;
       flex-direction: column;
-      padding: 20px;
+      padding: 20px 10px 20px 10px;
       gap: 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10;
     }
 
     .icon {
@@ -37,13 +43,13 @@
     }
 
     .icon img {
-      width: 72px;
-      height: 72px;
+      width: 64px;
+      height: 64px;
     }
 
     .icon span {
       color: white;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
     }
 
     .modal {
@@ -73,6 +79,34 @@
       border-radius: 5px;
       cursor: pointer;
       float: right;
+    }
+
+    .widgets {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      z-index: 10;
+      align-items: flex-end;
+    }
+
+    .widget {
+      background: #dfefff;
+      border: 1px solid #aaccee;
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      box-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+      font-family: 'Segoe UI', sans-serif;
+      width: 180px;
+    }
+
+    .widget.sticky {
+      background: #fffec5;
+      border: 1px solid #e0e0a0;
+      font-family: 'Segoe Print', sans-serif;
     }
 
     .taskbar {
@@ -116,69 +150,7 @@
       font-size: 1rem;
       color: white;
       margin-right: 15px;
-    } 
-  #boot-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: linear-gradient(to bottom, #003399, #3366cc);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 3000;
-      animation: bootFadeOut 3s forwards;
-      animation-delay: 2s;
     }
-
-    .boot-message {
-      font-size: 2.5rem;
-      color: white;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-      font-family: 'Trebuchet MS', sans-serif;
-    }
-
-    @keyframes bootFadeOut {
-      0% { opacity: 1; }
-      100% { opacity: 0; visibility: hidden; }
-    } 
-    .widgets {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  z-index: 10;
-}
-
-    .widgets {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      z-index: 10;
-    }
-
-    .widget {
-      background: #dfefff;
-      border: 1px solid #aaccee;
-      padding: 10px 12px;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      box-shadow: 3px 3px 6px rgba(0,0,0,0.2);
-      font-family: 'Segoe UI', sans-serif;
-      width: 180px;
-    }
-
-    .widget.sticky {
-      background: #fffec5;
-      border: 1px solid #e0e0a0;
-      font-family: 'Segoe Print', sans-serif;
-    } 
   </style>
 </head>
 <body> 
@@ -202,6 +174,10 @@
       <img src="https://i.ibb.co/rGBVfQKJ/tumblr-eccdc219d9c6899687e1b85974d2a4c7-9dbcd044-540.png" alt="Contact Icon" />
       <span>Contact</span>
     </div>
+    <div class="icon" onclick="openModal('mydocs')">
+  <img src="https://i.ibb.co/kLhzqPt/tumblr-19a86e4d3c123a911f4d11480de52dcb-48d1bb19-1280.png" alt="My Documents Icon" />
+  <span>My Docs</span>
+</div>
   </div>
  
   <div class="widgets">
@@ -246,7 +222,18 @@
     <button class="close" onclick="closeModal('contact')">Close</button>
     <h2>Contact</h2>
     <p>Email me or use the contact form (coming soon!).</p>
-  </div>
+  </div> 
+  
+  <div class="modal" id="mydocs">
+  <button class="close" onclick="closeModal('mydocs')">Close</button>
+  <h2>My Documents</h2>
+  <ul>
+    <li>📁 Projects</li>
+    <li>📄 resume.pdf</li>
+    <li>📄 commissions-info.txt</li>
+    <li>📁 Inspiration</li>
+  </ul>
+</div>
 
   <div class="start-menu" id="startMenu">
     <p><strong>Aloe's Start Menu</strong></p>
@@ -260,9 +247,13 @@
 
   <div class="taskbar">
     <button class="start-button" onclick="toggleStartMenu()">Start</button>
-    <div class="clock" id="clock"></div>
+    <div id="open-programs" style="flex: 1; display: flex; gap: 5px; padding-left: 10px;"></div>
+    <div class="clock" id="clock"></div> 
   </div>
 
+  <div id="bluescreen" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#0000AA; color:white; font-family:monospace; font-size:1.2rem; padding:20px; z-index:9999;">
+  <p>*** STOP: 0x000000D3 ***<br><br>A problem has been detected and Windows has been shut down to prevent damage.<br><br>If this is the first time you've seen this error screen, restart your computer.<br><br><br>Press F to pay respects...</p>
+</div>
    <script>
     function openModal(id) {
       document.getElementById(id).style.display = 'block';
@@ -302,6 +293,24 @@
       const message = messages[randomIndex];
       document.getElementById("sticky-note").textContent = message;
     }
+     function openModal(id) {
+  document.getElementById(id).style.display = 'block';
+  document.getElementById("startMenu").style.display = 'none';
+
+  if (!document.getElementById(`taskbar-${id}`)) {
+    const btn = document.createElement("button");
+    btn.id = `taskbar-${id}`;
+    btn.textContent = id.charAt(0).toUpperCase() + id.slice(1);
+    btn.onclick = () => openModal(id);
+    btn.classList.add("start-button");
+    document.getElementById("open-programs").appendChild(btn);
+  }
+}
+  document.addEventListener('keydown', (e) => {
+  if (e.key === 'f' || e.key === 'F') {
+    document.getElementById('bluescreen').style.display = 'block';
+  }
+});
     setInterval(updateClock, 1000);
     updateClock();
     updateCalendar();
