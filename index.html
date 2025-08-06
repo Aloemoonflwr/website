@@ -676,50 +676,47 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    const messages = [
+    window.addEventListener("DOMContentLoaded", () => {
+    // Boot screen fade out
+    const bootScreen = document.getElementById("boot-screen");
+    if (bootScreen) {
+      setTimeout(() => {
+        bootScreen.style.opacity = 0;
+        bootScreen.style.pointerEvents = "none";
+      }, 3000);
+    }
+
+    // Sticky note randomizer
+    const stickyNotes = [
+      "You’re doing amazing, sweet cryptid.",
+      "Drink water or I’m coming over.",
+      "You're not behind, you're in stealth mode.",
+      "Somewhere out there, a toad just blinked in your honor.",
+      "Today's vibe: frog in a trench coat running a library.",
+      "Frogs scream when afraid. Me too.",
+      "Hydrate or perish.",
+      "I bite. Gently, but with purpose.",
+      "This website is legally a frog swamp.",
+      "I cast minor inconvenience on those who doubt you.",
+      "Beware the shadow that bookmarks your soul.",
+      "Just ate a USB. Feeling powerful.",
+      "If no one’s proud of you, I am. And the frog is too.",
+      "If you touch my code, it will touch back.",
+      "One brain cell. It’s doing its best.",
+      "This sticky note is sentient now. Run.",
       "You're doing amazing!",
       "Don't forget to hydrate!",
       "Frogs love you :3",
       "You look cute today.",
       "Code break = snack break!"
-      "You’re doing amazing, sweet cryptid.",
-      "Drink water or I’m coming over.",
-      "You're not behind, you're in stealth mode.",
-      "If no one’s proud of you, I am. And the frog is too.",
-      "Somewhere out there, a toad just blinked in your honor.",
-      "Today's vibe: frog in a trench coat running a library.",
-      "One brain cell. It’s doing its best.",
-      "Frogs scream when afraid. Me too.",
-      "Ribbit responsibly.",
-      "This site is held together by moss and vibes.",
-      "Hydrate or perish.",
-      "I’ve installed 3 tracking cookies and 2 curses. Don't close this tab.",
-      "You're not allowed to give up today. Try again. I'll wait.",
-      "I bite. Gently, but with purpose.",
-      "I cast minor inconvenience on those who doubt you.",
-      "Just ate a USB. Feeling powerful.",
-      "This website is legally a frog swamp.",
-      "Beware the shadow that bookmarks your soul.",
-      "If you touch my code, it will touch back.",
-      "This sticky note is sentient now. Run."
     ];
-
-    function showRandomStickyNote() {
-    const randomIndex = Math.floor(Math.random() * stickyNotes.length);
+    
     const stickyNoteElement = document.getElementById("sticky-note-text");
     if (stickyNoteElement) {
+      const randomIndex = Math.floor(Math.random() * stickyNotes.length);
       stickyNoteElement.textContent = stickyNotes[randomIndex];
     }
-  }
-
-  window.addEventListener("DOMContentLoaded", showRandomStickyNote);
-     
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        document.getElementById("boot-screen").style.display = "none";
-        document.querySelector(".desktop").style.display = "flex";
-      }, 2000);
-    });
+  });
 
     $(function () {
       $(".modal").draggable({
