@@ -1,816 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moss & Moonlight - Windows 7</title>
-    <link rel="icon" type="image/png" href="https://icons.iconarchive.com/icons/custom-icon-design/lovely-weather-2/512/Moon-icon.png">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* ===== CUSTOMIZE YOUR WALLPAPER HERE ===== */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            height: 100vh;
-            overflow: hidden;
-            /* Replace the URL below with your custom wallpaper */
-            background: 
-                radial-gradient(ellipse at center, rgba(74,144,226,0.3) 0%, rgba(53,122,189,0.5) 50%, rgba(30,95,153,0.7) 100%),
-                url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        /* Desktop Background Pattern */
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(255,255,255,0.03) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        #desktop {
-            position: relative;
-            height: calc(100vh - 40px);
-            padding: 20px;
-            z-index: 1;
-        }
-
-        /* Desktop Icons */
-        .desktop-icon {
-            position: absolute;
-            width: 80px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            color: white;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-            transition: all 0.2s ease;
-            user-select: none;
-        }
-
-        .desktop-icon:hover {
-            background: rgba(255,255,255,0.1);
-            border-radius: 4px;
-            padding: 4px;
-        }
-
-        .desktop-icon.selected {
-            background: rgba(51,153,255,0.3);
-            border: 1px dotted rgba(255,255,255,0.6);
-            border-radius: 4px;
-            padding: 4px;
-        }
-
-        .desktop-icon img {
-            width: 48px;
-            height: 48px;
-            margin-bottom: 4px;
-            filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.5));
-        }
-
-        .desktop-icon span {
-            font-size: 11px;
-            text-align: center;
-            line-height: 1.2;
-            word-wrap: break-word;
-            max-width: 70px;
-        }
-
-        /* Position icons */
-        .desktop-icon:nth-child(1) { top: 20px; left: 20px; }
-        .desktop-icon:nth-child(2) { top: 120px; left: 20px; }
-        .desktop-icon:nth-child(3) { top: 220px; left: 20px; }
-        .desktop-icon:nth-child(4) { top: 320px; left: 20px; }
-
-        /* Windows */
-        .window {
-            position: absolute;
-            min-width: 450px;
-            max-width: 900px;
-            background: rgba(255, 255, 255, 0.6);
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 8px 8px 0 0;
-            box-shadow: 
-                0 0 0 1px rgba(0,0,0,0.1),
-                0 8px 32px rgba(0,0,0,0.3),
-                inset 0 1px 0 rgba(255,255,255,0.3);
-            backdrop-filter: blur(15px);
-            display: none;
-            z-index: 1000;
-            overflow: hidden;
-            resize: both;
-        }
-
-        .window.active {
-            z-index: 1001;
-        }
-
-        /* Title Bar */
-        .title-bar {
-            height: 30px;
-            background: linear-gradient(to bottom, 
-                rgba(144,238,144,0.8) 0%,
-                rgba(119,221,119,0.8) 4%,
-                rgba(102,205,102,0.8) 50%,
-                rgba(85,187,85,0.8) 51%,
-                rgba(76,175,76,0.8) 100%);
-            border-bottom: 1px solid rgba(255,255,255,0.3);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 8px;
-            cursor: move;
-            user-select: none;
-        }
-
-        .window.inactive .title-bar {
-            background: linear-gradient(to bottom, 
-                rgba(240,240,240,0.7) 0%,
-                rgba(204,204,204,0.7) 4%,
-                rgba(187,187,187,0.7) 50%,
-                rgba(174,174,174,0.7) 51%,
-                rgba(171,171,171,0.7) 100%);
-        }
-
-        .title-text {
-            font-size: 12px;
-            font-weight: 600;
-            color: rgba(0,0,0,0.8);
-            text-shadow: 0 1px 0 rgba(255,255,255,0.5);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .window-icon {
-            width: 16px;
-            height: 16px;
-        }
-
-        /* Window Controls */
-        .window-controls {
-            display: flex;
-            gap: 2px;
-        }
-
-        .control-btn {
-            width: 17px;
-            height: 17px;
-            border: none;
-            cursor: pointer;
-            font-size: 11px;
-            font-weight: bold;
-            border-radius: 2px;
-            transition: all 0.1s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .minimize-btn {
-            background: linear-gradient(to bottom, #fdfdfd 0%, #dfdfdf 100%);
-            color: #333;
-        }
-
-        .minimize-btn:hover {
-            background: linear-gradient(to bottom, #e5f4fd 0%, #bddbf7 100%);
-        }
-
-        .maximize-btn {
-            background: linear-gradient(to bottom, #fdfdfd 0%, #dfdfdf 100%);
-            color: #333;
-        }
-
-        .maximize-btn:hover {
-            background: linear-gradient(to bottom, #e5f4fd 0%, #bddbf7 100%);
-        }
-
-        .close-btn {
-            background: linear-gradient(to bottom, #fdfdfd 0%, #dfdfdf 100%);
-            color: #333;
-        }
-
-        .close-btn:hover {
-            background: linear-gradient(to bottom, #f7b2b2 0%, #e74c3c 100%);
-            color: white;
-        }
-
-        /* Window Content */
-        .window-content {
-            padding: 16px;
-            background: rgba(255, 255, 255, 0.7);
-            min-height: 200px;
-            max-height: 600px;
-            overflow-y: auto;
-            overflow-x: hidden;
-            word-wrap: break-word;
-        }
-
-        .window-content h2, .window-content h3 {
-            margin-bottom: 12px;
-            line-height: 1.3;
-        }
-
-        .window-content p {
-            margin-bottom: 12px;
-            line-height: 1.5;
-            color: #333;
-            word-wrap: break-word;
-        }
-
-        .window-content ul {
-            margin-left: 20px;
-            margin-bottom: 12px;
-        }
-
-        .window-content li {
-            margin-bottom: 8px;
-            color: #333;
-            line-height: 1.4;
-        }
-
-        /* Icon Management */
-        .add-icon-btn {
-            display: none; /* Hidden since you'll edit icons in code */
-        }
-
-        .icon-form {
-            display: none; /* Hidden since you'll edit icons in code */
-        }
-
-        .window-content h2 {
-            color: #2c5aa0;
-            margin-bottom: 12px;
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .window-content p {
-            margin-bottom: 12px;
-            line-height: 1.4;
-            color: #333;
-        }
-
-        .window-content ul {
-            margin-left: 20px;
-            margin-bottom: 12px;
-        }
-
-        .window-content li {
-            margin-bottom: 6px;
-            color: #333;
-        }
-
-        /* Form Styling */
-        .window-content form {
-            margin-top: 16px;
-        }
-
-        .window-content label {
-            display: block;
-            margin-bottom: 4px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .window-content input, 
-        .window-content select, 
-        .window-content textarea {
-            width: 100%;
-            padding: 6px;
-            border: 1px solid #ccc;
-            border-radius: 2px;
-            margin-bottom: 12px;
-            font-family: inherit;
-        }
-
-        .window-content button[type="submit"] {
-            background: linear-gradient(to bottom, #f0f8ff 0%, #b6d7ff 100%);
-            border: 1px solid #4a90e2;
-            padding: 8px 16px;
-            border-radius: 3px;
-            cursor: pointer;
-            font-weight: 600;
-            color: #2c5aa0;
-        }
-
-        .window-content button[type="submit"]:hover {
-            background: linear-gradient(to bottom, #e6f3ff 0%, #99c8ff 100%);
-        }
-
-        /* Taskbar */
-        .taskbar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 40px;
-            background: linear-gradient(to bottom,
-                rgba(144,238,144,0.4) 0%,
-                rgba(76,175,76,0.7) 100%);
-            backdrop-filter: blur(15px);
-            border-top: 1px solid rgba(255,255,255,0.2);
-            display: flex;
-            align-items: center;
-            padding: 0 8px;
-            z-index: 2000;
-        }
-
-        .start-button {
-            width: 60px;
-            height: 32px;
-            background: linear-gradient(to bottom,
-                rgba(26,188,156,0.9) 0%,
-                rgba(22,160,133,0.9) 100%);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 6px;
-            color: white;
-            font-weight: bold;
-            font-size: 11px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 8px;
-            text-shadow: 0 1px 1px rgba(0,0,0,0.5);
-            transition: all 0.2s ease;
-        }
-
-        .start-button:hover {
-            background: linear-gradient(to bottom,
-                rgba(39,174,96,0.9) 0%,
-                rgba(34,153,84,0.9) 100%);
-        }
-
-        .taskbar-items {
-            display: flex;
-            gap: 4px;
-            flex: 1;
-        }
-
-        .taskbar-item {
-            height: 32px;
-            padding: 0 12px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 4px;
-            color: white;
-            font-size: 11px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.2s ease;
-            max-width: 200px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .taskbar-item:hover {
-            background: rgba(255,255,255,0.2);
-        }
-
-        .taskbar-item.active {
-            background: rgba(255,255,255,0.3);
-            border-color: rgba(255,255,255,0.3);
-        }
-
-        .system-tray {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-left: auto;
-            color: white;
-            font-size: 11px;
-        }
-
-        /* Spotify iframe styling */
-        .spotify-container {
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-
-        /* Scrollbar styling for windows */
-        .window-content::-webkit-scrollbar {
-            width: 16px;
-        }
-
-        .window-content::-webkit-scrollbar-track {
-            background: #f0f0f0;
-        }
-
-        .window-content::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, #e0e0e0, #c0c0c0);
-            border-radius: 8px;
-        }
-
-        .window-content::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to bottom, #d0d0d0, #b0b0b0);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moss & Moonlight</title>
+  <link rel="stylesheet" href="desktop.css">
+  <script defer src="main.js"></script>
 </head>
 <body>
-    <div id="desktop">
-        <!-- ===== CUSTOMIZE YOUR DESKTOP ICONS HERE ===== -->
-        <!-- 
-        To add more icons, copy the format below:
-        For windows: use data-window="windowname" (window must exist below)
-        For external links: use data-url="https://example.com"
-        -->
-        
-        <div class="desktop-icon" data-window="about">
-            <img src="https://icons.iconarchive.com/icons/paomedia/small-n-flat/256/folder-icon.png" alt="About Me">
-            <span>About Me</span>
-        </div>
-        <div class="desktop-icon" data-window="commissions">
-            <img src="https://icons.iconarchive.com/icons/paomedia/small-n-flat/256/folder-icon.png" alt="Commissions">
-            <span>Commissions</span>
-        </div>
-        <div class="desktop-icon" data-window="contact">
-            <img src="https://icons.iconarchive.com/icons/paomedia/small-n-flat/256/link-icon.png" alt="Contact">
-            <span>Contact</span>
-        </div>
-        <div class="desktop-icon" data-window="nowPlaying">
-            <img src="https://icons.iconarchive.com/icons/paomedia/small-n-flat/256/multimedia-icon.png" alt="Now Playing">
-            <span>Now Playing</span>
-        </div>
-        
-        <!-- ADD MORE ICONS HERE -->
-        <!-- Example external link:
-        <div class="desktop-icon" data-url="https://github.com/yourusername">
-            <img src="https://icons.iconarchive.com/icons/paomedia/small-n-flat/256/social-github-icon.png" alt="GitHub">
-            <span>GitHub</span>
-        </div>
-        -->
-        
-        <!-- Example new window:
-        <div class="desktop-icon" data-window="portfolio">
-            <img src="https://icons.iconarchive.com/icons/paomedia/small-n-flat/256/folder-image-icon.png" alt="Portfolio">
-            <span>Portfolio</span>
-        </div>
-        -->
+  <!-- Desktop Icons -->
+  <div id="desktop">
+    <div class="desktop-icon" data-target="about-window">
+      <img src="folder-icon.png" alt="About">
+      <p>About</p>
     </div>
-
-    <!-- Windows -->
-    <div class="window" id="about-window" style="top: 100px; left: 200px;">
-        <div class="title-bar">
-            <div class="title-text">
-                <img class="window-icon" src="https://icons.iconarchive.com/icons/paomedia/small-n-flat/256/folder-icon.png" alt="">
-                About Me
-            </div>
-            <div class="window-controls">
-                <button class="control-btn minimize-btn" data-action="minimize">−</button>
-                <button class="control-btn maximize-btn" data-action="maximize">□</button>
-                <button class="control-btn close-btn" data-action="close">×</button>
-            </div>
-        </div>
-        <div class="window-content">
-            <h2>✧ About Me</h2>
-            <p>Hello! I'm Aloe, a collage artist with a love for frogs, soft horror, and witchy aesthetics. I create digital art pieces that blend mysterious and natural elements with a touch of whimsy.</p>
-            <p>My work often features dreamy, ethereal compositions that tell stories through carefully curated imagery. I enjoy working with themes of nature, magic, and the liminal spaces between reality and fantasy.</p>
-            <p>When I'm not creating art, you can find me collecting vintage ephemera, reading tarot cards, or exploring the woods looking for inspiration.</p>
-        </div>
+    <div class="desktop-icon" data-target="links-window">
+      <img src="folder-icon.png" alt="Links">
+      <p>Links</p>
     </div>
-
-    <div class="window" id="commissions-window" style="top: 120px; left: 250px;">
-        <div class="title-bar">
-            <div class="title-text">
-                <img class="window-icon" src="https://icons.iconarchive.com/icons/paomedia/small-n-flat/256/folder-icon.png" alt="">
-                Commissions
-            </div>
-            <div class="window-controls">
-                <button class="control-btn minimize-btn" data-action="minimize">−</button>
-                <button class="control-btn maximize-btn" data-action="maximize">□</button>
-                <button class="control-btn close-btn" data-action="close">×</button>
-            </div>
-        </div>
-        <div class="window-content">
-            <h2>✶ Commissions</h2>
-            <p>I'm currently open for Photoshop-based commissions including RP icons, promos, collage art, profile edits, and Twitch overlays and panels.</p>
-            
-            <h3>Menu & Pricing</h3>
-            <ul>
-                <li><strong>RP Icon Packs:</strong> 10 icons for $5, 20 for $8, 30 for $12</li>
-                <li><strong>Profile Picture Edits:</strong> $3 each</li>
-                <li><strong>Promo Graphics:</strong> Starting at $8</li>
-                <li><strong>Collage Art:</strong> Starting at $10</li>
-                <li><strong>Twitch Overlays/Panels:</strong> Starting at $12</li>
-            </ul>
-            
-            <p>🔸 Larger projects may require a 25% deposit upfront. PayPal or Ko-fi is accepted.</p>
-            
-            <form action="https://formspree.io/f/xnnpwewz" method="POST">
-                <label>Name:<br><input type="text" name="name" required></label>
-                <label>Email:<br><input type="email" name="email" required></label>
-                <label>Commission Type:<br>
-                    <select name="type">
-                        <option>RP Icons</option>
-                        <option>Promos</option>
-                        <option>Collage Art</option>
-                        <option>Twitch Overlay</option>
-                        <option>Other</option>
-                    </select>
-                </label>
-                <label>Description:<br><textarea name="description" rows="4" required placeholder="Please describe your commission request in detail..."></textarea></label>
-                <button type="submit">Send Request</button>
-            </form>
-        </div>
+    <div class="desktop-icon" data-target="commissions-window">
+      <img src="folder-icon.png" alt="Commissions">
+      <p>Commissions</p>
     </div>
-
-    <div class="window" id="contact-window" style="top: 140px; left: 300px;">
-        <div class="title-bar">
-            <div class="title-text">
-                <img class="window-icon" src="https://icons.iconarchive.com/icons/paomedia/small-n-flat/256/link-icon.png" alt="">
-                Contact
-            </div>
-            <div class="window-controls">
-                <button class="control-btn minimize-btn" data-action="minimize">−</button>
-                <button class="control-btn maximize-btn" data-action="maximize">□</button>
-                <button class="control-btn close-btn" data-action="close">×</button>
-            </div>
-        </div>
-        <div class="window-content">
-            <h2>☙ Contact</h2>
-            <p>Get in touch with me through any of these methods:</p>
-            <p><strong>Email:</strong> aloemoonflwr@gmail.com</p>
-            <p><strong>Discord:</strong> AloeMoonflwr</p>
-            <p>I typically respond within 24-48 hours. For commission inquiries, please use the form in the Commissions window for faster processing.</p>
-        </div>
+    <div class="desktop-icon" data-target="contact-window">
+      <img src="shortcut-icon.png" alt="Contact">
+      <p>Contact</p>
     </div>
+  </div>
 
-    <div class="window" id="nowPlaying-window" style="top: 160px; left: 350px; width: 500px;">
-        <div class="title-bar">
-            <div class="title-text">
-                <img class="window-icon" src="https://icons.iconarchive.com/icons/paomedia/small-n-flat/256/multimedia-icon.png" alt="">
-                Now Playing
-            </div>
-            <div class="window-controls">
-                <button class="control-btn minimize-btn" data-action="minimize">−</button>
-                <button class="control-btn maximize-btn" data-action="maximize">□</button>
-                <button class="control-btn close-btn" data-action="close">×</button>
-            </div>
-        </div>
-        <div class="window-content">
-            <div class="spotify-container">
-                <iframe 
-                    style="border-radius:12px" 
-                    src="https://open.spotify.com/embed/playlist/01lijiPQlAsnzK9nw31w8k?utm_source=generator" 
-                    width="100%" 
-                    height="352" 
-                    frameBorder="0" 
-                    allowfullscreen 
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                    loading="lazy">
-                </iframe>
-            </div>
-        </div>
+  <!-- Windows -->
+  <div class="window" id="about-window">
+    <div class="window-title-bar">
+      <span>About Me</span>
+      <button class="close-btn">&times;</button>
     </div>
-
-    <!-- Taskbar -->
-    <div class="taskbar">
-        <button class="start-button">Start</button>
-        <div class="taskbar-items"></div>
-        <div class="system-tray">
-            <span id="current-time"></span>
-        </div>
+    <div class="window-content">
+      <p>Hello! I'm Aloe, a collage artist with a love for frogs, soft horror, and witchy aesthetics. I make dreamy vintage-inspired art with a hint of magic...</p>
     </div>
+  </div>
 
-    <script>
-        // Window management
-        let activeWindow = null;
-        let isDragging = false;
-        let dragOffset = { x: 0, y: 0 };
-        let zIndexCounter = 1000;
+  <div class="window" id="links-window">
+    <div class="window-title-bar">
+      <span>Links</span>
+      <button class="close-btn">&times;</button>
+    </div>
+    <div class="window-content">
+      <ul>
+        <li><a href="https://aloemoonflwr.tumblr.com" target="_blank">Tumblr</a></li>
+        <li><a href="https://twitter.com/aloemoonflwr" target="_blank">Twitter</a></li>
+        <li><a href="https://pinterest.com/aloemoonflwr" target="_blank">Pinterest</a></li>
+        <li><a href="https://deviantart.com/aloemoonflwr" target="_blank">DeviantArt</a></li>
+        <li><a href="https://payhip.com/aloemoonflwr" target="_blank">Payhip</a></li>
+        <li><a href="https://aloemoonflwr.gumroad.com" target="_blank">Gumroad</a></li>
+        <li><a href="https://ko-fi.com/aloemoonflwr" target="_blank">Ko-fi</a></li>
+      </ul>
+    </div>
+  </div>
 
-        // Desktop icon handling
-        document.querySelectorAll('.desktop-icon').forEach(icon => {
-            icon.addEventListener('click', () => {
-                // Remove selection from other icons
-                document.querySelectorAll('.desktop-icon').forEach(i => i.classList.remove('selected'));
-                icon.classList.add('selected');
-            });
+  <div class="window" id="commissions-window">
+    <div class="window-title-bar">
+      <span>Commissions</span>
+      <button class="close-btn">&times;</button>
+    </div>
+    <div class="window-content">
+      <p>I'm currently open for Photoshop-based commissions including RP icons, promos, collage art, profile edits, and Twitch overlays and panels.</p>
+      <h3>Menu & Pricing</h3>
+      <ul>
+        <li><strong>RP Icon Packs:</strong> 10 icons for $5, 20 for $8, 30 for $12</li>
+        <li><strong>Profile Picture Edits:</strong> $3 each</li>
+        <li><strong>Promo Graphics:</strong> Starting at $8</li>
+        <li><strong>Collage Art:</strong> Starting at $10</li>
+        <li><strong>Twitch Overlays/Panels:</strong> Starting at $12</li>
+      </ul>
+      <p>🔸 Larger projects may require a 25% deposit upfront. PayPal or Ko-fi is accepted.</p>
+      <form action="https://formspree.io/f/xnnpwewz" method="POST">
+        <label>Name:<br><input type="text" name="name" required></label><br>
+        <label>Email:<br><input type="email" name="email" required></label><br>
+        <label>Commission Type:<br>
+          <select name="type" required>
+            <option value="icons">RP Icons</option>
+            <option value="promos">Promos</option>
+            <option value="collage">Collage Art</option>
+            <option value="overlay">Twitch Overlay</option>
+            <option value="other">Other</option>
+          </select>
+        </label><br>
+        <label>Description:<br><textarea name="description" rows="4" required></textarea></label><br>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
 
-            icon.addEventListener('dblclick', () => {
-                if (icon.dataset.window) {
-                    // Open window
-                    const windowId = icon.dataset.window + '-window';
-                    openWindow(windowId);
-                } else if (icon.dataset.url) {
-                    // Open external URL
-                    window.open(icon.dataset.url, '_blank');
-                }
-            });
-        });
+  <div class="window" id="contact-window">
+    <div class="window-title-bar">
+      <span>Contact</span>
+      <button class="close-btn">&times;</button>
+    </div>
+    <div class="window-content">
+      <p>Have any questions? Just want to say hello? You can contact me at <strong>aloemoonflwr@gmail.com</strong> or on Discord at <strong>AloeMoonflwr</strong>!</p>
+    </div>
+  </div>
 
-        // Remove icon selection when clicking on desktop
-        document.addEventListener('click', (e) => {
-            if (e.target === document.body || e.target.id === 'desktop') {
-                document.querySelectorAll('.desktop-icon').forEach(i => i.classList.remove('selected'));
-            }
-        });
-
-        function openWindow(windowId) {
-            const window = document.getElementById(windowId);
-            if (!window) return;
-
-            window.style.display = 'block';
-            bringToFront(window);
-            updateTaskbar();
-            
-            // Center window if first time opening
-            if (!window.dataset.positioned) {
-                centerWindow(window);
-                window.dataset.positioned = 'true';
-            }
-        }
-
-        function closeWindow(windowId) {
-            const window = document.getElementById(windowId);
-            if (!window) return;
-
-            window.style.display = 'none';
-            if (activeWindow === window) {
-                activeWindow = null;
-            }
-            updateTaskbar();
-        }
-
-        function minimizeWindow(windowId) {
-            const window = document.getElementById(windowId);
-            if (!window) return;
-
-            window.style.display = 'none';
-            updateTaskbar();
-        }
-
-        function centerWindow(window) {
-            const rect = window.getBoundingClientRect();
-            const x = (window.innerWidth - rect.width) / 2;
-            const y = (window.innerHeight - rect.height) / 2 - 20; // Account for taskbar
-            
-            window.style.left = Math.max(0, x) + 'px';
-            window.style.top = Math.max(0, y) + 'px';
-        }
-
-        function bringToFront(window) {
-            // Remove active class from all windows
-            document.querySelectorAll('.window').forEach(w => w.classList.remove('active'));
-            
-            // Set as active and bring to front
-            window.classList.add('active');
-            window.style.zIndex = ++zIndexCounter;
-            activeWindow = window;
-        }
-
-        // Window controls
-        document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('control-btn')) {
-                const window = e.target.closest('.window');
-                const action = e.target.dataset.action;
-                
-                switch (action) {
-                    case 'close':
-                        closeWindow(window.id);
-                        break;
-                    case 'minimize':
-                        minimizeWindow(window.id);
-                        break;
-                    case 'maximize':
-                        // Toggle maximized state
-                        if (window.classList.contains('maximized')) {
-                            window.classList.remove('maximized');
-                            window.style.width = window.dataset.originalWidth || '400px';
-                            window.style.height = window.dataset.originalHeight || 'auto';
-                            window.style.top = window.dataset.originalTop || '100px';
-                            window.style.left = window.dataset.originalLeft || '200px';
-                        } else {
-                            // Store original dimensions
-                            window.dataset.originalWidth = window.style.width || '400px';
-                            window.dataset.originalHeight = window.style.height || 'auto';
-                            window.dataset.originalTop = window.style.top || '100px';
-                            window.dataset.originalLeft = window.style.left || '200px';
-                            
-                            window.classList.add('maximized');
-                            window.style.width = '100vw';
-                            window.style.height = 'calc(100vh - 40px)';
-                            window.style.top = '0';
-                            window.style.left = '0';
-                        }
-                        break;
-                }
-            }
-        });
-
-        // Window dragging
-        document.addEventListener('mousedown', (e) => {
-            if (e.target.classList.contains('title-bar') || e.target.closest('.title-bar')) {
-                const window = e.target.closest('.window');
-                if (!window || window.classList.contains('maximized')) return;
-                
-                isDragging = true;
-                activeWindow = window;
-                bringToFront(window);
-                
-                const rect = window.getBoundingClientRect();
-                dragOffset.x = e.clientX - rect.left;
-                dragOffset.y = e.clientY - rect.top;
-                
-                document.body.style.cursor = 'move';
-                e.preventDefault();
-            }
-        });
-
-        document.addEventListener('mousemove', (e) => {
-            if (isDragging && activeWindow) {
-                const x = e.clientX - dragOffset.x;
-                const y = e.clientY - dragOffset.y;
-                
-                activeWindow.style.left = Math.max(0, Math.min(x, window.innerWidth - 200)) + 'px';
-                activeWindow.style.top = Math.max(0, Math.min(y, window.innerHeight - 100)) + 'px';
-            }
-        });
-
-        document.addEventListener('mouseup', () => {
-            isDragging = false;
-            document.body.style.cursor = 'default';
-        });
-
-        // Window focus
-        document.addEventListener('mousedown', (e) => {
-            const window = e.target.closest('.window');
-            if (window && window !== activeWindow) {
-                bringToFront(window);
-            }
-        });
-
-        // Taskbar functionality
-        function updateTaskbar() {
-            const taskbarItems = document.querySelector('.taskbar-items');
-            taskbarItems.innerHTML = '';
-            
-            document.querySelectorAll('.window').forEach(window => {
-                if (window.style.display !== 'none') {
-                    const item = document.createElement('div');
-                    item.className = 'taskbar-item';
-                    if (window === activeWindow) {
-                        item.classList.add('active');
-                    }
-                    
-                    const icon = window.querySelector('.window-icon');
-                    const title = window.querySelector('.title-text').textContent.trim();
-                    
-                    item.innerHTML = `
-                        <img src="${icon.src}" style="width: 16px; height: 16px;">
-                        <span>${title}</span>
-                    `;
-                    
-                    item.addEventListener('click', () => {
-                        if (window.style.display === 'none') {
-                            window.style.display = 'block';
-                        }
-                        bringToFront(window);
-                    });
-                    
-                    taskbarItems.appendChild(item);
-                }
-            });
-        }
-
-        // System clock
-        function updateClock() {
-            const now = new Date();
-            const time = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-            document.getElementById('current-time').textContent = time;
-        }
-
-        // Initialize
-        updateClock();
-        setInterval(updateClock, 1000);
-        updateTaskbar();
-
-        // Start button (placeholder functionality)
-        document.querySelector('.start-button').addEventListener('click', () => {
-            // Could implement start menu here
-            console.log('Start menu clicked');
-        });
-    </script>
+  <!-- Start Bar -->
+  <div id="taskbar">
+    <div id="start-btn">Start</div>
+    <div id="start-menu">
+      <ul>
+        <li data-target="about-window">About</li>
+        <li data-target="links-window">Links</li>
+        <li data-target="commissions-window">Commissions</li>
+        <li data-target="contact-window">Contact</li>
+      </ul>
+    </div>
+  </div>
 </body>
 </html>
