@@ -565,7 +565,27 @@
 <audio id="frog-scream">
   <source src="https://audio.jukehost.co.uk/N5L7ioFdLqd0tPNkVj2ps4bxAkuxUOrC" type="audio/mpeg">
   Your browser does not support the audio element.
-</audio>  
+</audio>
+<div id="welcome-modal" class="modal welcome-modal">
+  <div class="modal-titlebar">
+    <span class="window-title">Welcome</span>
+    <div class="window-controls">
+      <button onclick="closeModal('welcome-modal')">X</button>
+    </div>
+  </div>
+  <div class="modal-content">
+    <p><strong>Welcome to Moonflwr OS! 🌙🐸</strong></p>
+    <p>This site includes:</p>
+    <ul>
+      <li>🖼️ Collage-style desktop UI</li>
+      <li>📁 Modal windows with info + commissions</li>
+      <li>🌿 Custom frog cursor + cottagecore vibes</li>
+      <li>🐸 Hidden frog Easter egg</li>
+    </ul>
+    <p>Hand-coded by <strong>Aloe</strong> over several cozy nights filled with caffeine and frog screams.</p>
+    <p>Thank you for visiting!</p>
+  </div>
+</div>  
    <script>
     function openModal(id) {
       document.getElementById(id).style.display = 'block';
