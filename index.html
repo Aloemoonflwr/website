@@ -379,28 +379,109 @@
 
 <div class="modal" id="contact">
   <div class="modal-titlebar">
-    <span>Contact</span>
+    <span>📬 Contact</span>
     <button class="close" onclick="closeModal('contact')">✖</button>
   </div>
   <div class="modal-content">
-    <p>Email me or use the contact form (coming soon!).</p>
+    <p>
+      Got questions? Want to commission something? Need a frog blessing?  
+      You can reach me here:
+    </p>
+    <ul>
+      <li>📨 Tumblr: <a href="https://aloemoonflwr.tumblr.com" target="_blank">aloemoonflwr.tumblr.com</a></li>
+      <li>📧 Email: <a href="mailto:aloemoonflwr@gmail.com">aloemoonflwr@gmail.com</a></li> 
+      <li>💬 Discord: <strong>AloeMoonflwr</strong></li>
+    </ul>
+    <p>A contact form will be added here soon for easier messages! 🐸</p>
   </div>
-  </div> 
+</div>
+
   
 <div class="modal" id="mydocs">
   <div class="modal-titlebar">
-    <span>My Documents</span>
+    <span>📁 My Documents</span>
     <button class="close" onclick="closeModal('mydocs')">✖</button>
   </div>
   <div class="modal-content">
-  <ul>
-    <li>📁 Projects</li>
-    <li>📄 resume.pdf</li>
-    <li>📄 commissions-info.txt</li>
-    <li>📁 Inspiration</li>
-  </ul>
+    <ul>
+      <li onclick="openModal('projects')">📁 Projects – Web and art experiments</li>
+      <li onclick="openModal('resume')">📄 resume.pdf – My current resume</li>
+      <li onclick="openModal('commissions-info')">📄 commissions-info.txt – Prices + Terms</li>
+      <li onclick="openModal('inspiration')">📁 Inspiration – Moodboards & collage fuel</li>
+    </ul>
+  </div>
+</div> 
+<div class="modal" id="projects">
+  <div class="modal-titlebar">
+    <span>📁 Projects</span>
+    <button class="close" onclick="closeModal('projects')">✖</button>
+  </div>
+  <div class="modal-content">
+    <p>
+      Here’s a look at some of the things I’ve been working on:
+    </p>
+    <ul>
+      <li>🌐 <strong>My Website:</strong> A handmade Windows 7-inspired homepage (this one!)</li>
+      <li>🎮 <strong>Twitch Assets:</strong> Custom overlays, panels, and stream packs</li>
+      <li>🖼️ <strong>Collage Art Series:</strong> Dreamy, vintage, frog-filled chaos</li>
+      <li>💻 <strong>Clip Bot (WIP):</strong> Auto-clip Twitch content & generate captions</li>
+    </ul>
+    <p>More coming soon — I'm always tinkering with something 🛠️🐸</p>
   </div>
 </div>
+<div class="modal" id="resume">
+  <div class="modal-titlebar">
+    <span>📄 resume.pdf</span>
+    <button class="close" onclick="closeModal('resume')">✖</button>
+  </div>
+  <div class="modal-content">
+    <p>
+      You can view or download my resume below:
+    </p>
+    <p>
+      📄 <a href="YOUR_RESUME_LINK_HERE" target="_blank">Click here to open resume.pdf</a>
+    </p>
+    <p>
+      (It’ll open in a new tab like a proper document viewer 👀)
+    </p>
+  </div>
+</div> 
+<div class="modal" id="commissions-info">
+  <div class="modal-titlebar">
+    <span>📄 commissions-info.txt</span>
+    <button class="close" onclick="closeModal('commissions-info')">✖</button>
+  </div>
+  <div class="modal-content">
+    <p>
+      This file contains a plain text version of my commission info:
+    </p>
+    <ul>
+      <li>💵 Pricing (icons, promos, overlays, etc.)</li>
+      <li>🕒 Turnaround time (1–3 weeks)</li>
+      <li>✏️ Revision policy (1–2 small edits included)</li>
+      <li>💳 Payment plans available on request</li>
+    </ul>
+    <p>
+      Full version lives in the <strong>Commissions</strong> window. This is just a quick text summary! ✨
+    </p>
+  </div>
+</div> 
+ <div class="modal" id="inspiration">
+  <div class="modal-titlebar">
+    <span>📁 Inspiration</span>
+    <button class="close" onclick="closeModal('inspiration')">✖</button>
+  </div>
+  <div class="modal-content">
+    <p>Here’s where I keep my brain fuel:</p>
+    <ul>
+      <li>🌈 Moodboards with pastel frogs & analog horror</li>
+      <li>🧵 Collage scraps, scanned paper, sparkles</li>
+      <li>📌 Pinterest boards: <a href="https://www.pinterest.com/aloemoonflwr" target="_blank">pinterest.com/aloemoonflwr</a></li>
+      <li>📂 Screenshots of weird UI & vaporwave folders</li>
+    </ul>
+    <p>Inspiration lives everywhere — especially in cluttered desktops 🌿</p>
+  </div>
+</div> 
 
   <div class="taskbar">
     <button class="start-button" onclick="toggleStartMenu()">Start</button>
