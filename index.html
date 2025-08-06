@@ -143,7 +143,7 @@
       0% { opacity: 1; }
       100% { opacity: 0; visibility: hidden; }
     } 
-     .widgets {
+    .widgets {
       position: fixed;
       top: 20px;
       right: 20px;
@@ -154,12 +154,14 @@
     }
 
     .widget {
-      background: rgba(255, 255, 255, 0.7);
-      border: 2px solid #66bb6a;
-      padding: 10px;
-      border-radius: 10px;
+      background: #fffec5;
+      border: 1px solid #e0e0a0;
+      padding: 10px 12px;
+      border-radius: 6px;
       font-size: 0.85rem;
-      width: 160px;
+      box-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+      font-family: 'Segoe Print', sans-serif;
+      width: 180px;
     }
   </style>
 </head>
@@ -198,6 +200,10 @@
     <div class="widget">
       <strong>🌱 Terrarium:</strong><br />
       Aloe sprout status: thriving 🌿
+    </div> 
+    <div class="widget">
+      <strong>📝 Sticky Note:</strong><br />
+      <span id="sticky-note"></span>
     </div>
   </div>
   <div class="modal" id="about">
@@ -265,7 +271,19 @@
       const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
       document.getElementById("calendar-date").textContent = now.toLocaleDateString(undefined, options);
     }
-
+       function updateStickyNote() {
+      const messages = [
+        "Don't forget to drink water 💧",
+        "You are doing great 💖",
+        "Stretch your legs a bit! 🧘",
+        "Moonflwr OS loves you 🌼",
+        "One thing at a time 🐸",
+        "Did you blink today? 👀"
+      ];
+      const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+      document.getElementById("sticky-note").textContent = randomMsg;
+    }
+     
     setInterval(updateClock, 1000);
     updateClock();
     updateCalendar();
