@@ -30,33 +30,9 @@ body {
   height: 48px;
 }
 
-.modal {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #e8f5e9;
-  border: 2px solid #81c784;
-  padding: 20px;
-  z-index: 1000;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  max-width: 400px;
-  border-radius: 12px;
-}
 
 .modal h2 {
   margin-top: 0;
-}
-
-.modal .close {
-  background: #66bb6a;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 5px;
-  cursor: pointer;
-  float: right;
 }
 
 .taskbar {
@@ -118,29 +94,57 @@ body {
   font-family: monospace;
   font-size: 14px;
 }
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  background: #f0f0f0;
+  border: 2px solid #999;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+  font-family: 'Segoe UI', sans-serif;
+  z-index: 1000;
+  border-radius: 0; /* No rounded corners */
+}
+
 .modal-titlebar {
-  background: linear-gradient(to bottom, #e4e4e4, #ccc);
-  padding: 5px 10px;
+  background: linear-gradient(to bottom, #e4e4e4, #cfcfcf);
+  padding: 4px 8px;
   border-bottom: 1px solid #999;
-  font-weight: bold;
-  font-size: 14px;
+  font-weight: normal;
+  font-size: 13px;
   color: black;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: default;
+  height: 28px;
+  box-shadow: inset 0 1px 0 #fff;
 }
 
 .modal .close {
-  background: #d9534f;
+  background: #e74c3c;
   border: 1px solid #999;
   color: white;
   font-weight: bold;
-  padding: 0 8px;
-  height: 24px;
-  font-size: 16px;
-  line-height: 24px;
-  border-radius: 0;
+  padding: 2px 8px;
+  height: 22px;
+  font-size: 13px;
+  line-height: 18px;
+  border-radius: 2px;
   cursor: pointer;
+  margin-left: 10px;
 }
 
+.modal .close:hover {
+  background: #c9302c;
+  border-color: #ac2925;
+}
+
+.modal-content {
+  padding: 15px;
+}
