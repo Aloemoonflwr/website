@@ -275,64 +275,48 @@
    <script>
     function openModal(id) {
       document.getElementById(id).style.display = 'block';
-      document.getElementById("startMenu").style.display = 'none';
     }
 
     function closeModal(id) {
       document.getElementById(id).style.display = 'none';
     }
 
+    function minimizeModal(id) {
+      document.getElementById(id).style.display = 'none'; // simple minimize
+    }
+
     function toggleStartMenu() {
-      const menu = document.getElementById("startMenu");
+      const menu = document.getElementById('start-menu');
       menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
     }
 
     function updateClock() {
       const now = new Date();
-      const clock = document.getElementById("clock");
+      const clock = document.getElementById('clock');
       clock.textContent = now.toLocaleTimeString();
     }
+    setInterval(updateClock, 1000);
+    updateClock();
 
-    function updateCalendar() {
-      const now = new Date();
-      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      document.getElementById("calendar-date").textContent = now.toLocaleDateString(undefined, options);
-    }
+    const messages = [
+      "You're doing amazing!",
+      "Don't forget to hydrate!",
+      "Frogs love you :3",
+      "You look cute today.",
+      "Code break = snack break!"
+    ];
     function updateStickyNote() {
-      const messages = [
-        "Don't forget to drink water 💧",
-        "You are doing great 💖",
-        "Stretch your legs a bit! 🧘",
-        "Moonflwr OS loves you 🌼",
-        "One thing at a time 🐸",
-        "Did you blink today? 👀"
-      ];
-      const randomIndex = Math.floor(Math.random() * messages.length);
-      const message = messages[randomIndex];
-      document.getElementById("sticky-note").textContent = message;
+      const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+      document.getElementById('sticky-note').textContent = randomMessage;
     }
-     function openModal(id) {
-  document.getElementById(id).style.display = 'block';
-  document.getElementById("startMenu").style.display = 'none';
+    updateStickyNote();
 
-  if (!document.getElementById(`taskbar-${id}`)) {
-    const btn = document.createElement("button");
-    btn.id = `taskbar-${id}`;
-    btn.textContent = id.charAt(0).toUpperCase() + id.slice(1);
-    btn.onclick = () => openModal(id);
-    btn.classList.add("start-button");
-    document.getElementById("open-programs").appendChild(btn);
-  }
-     window.addEventListener("load", () => {
+    window.addEventListener("load", () => {
       setTimeout(() => {
         document.getElementById("boot-screen").style.display = "none";
         document.querySelector(".desktop").style.display = "flex";
       }, 2000);
-    });      
-    setInterval(updateClock, 1000);
-    updateClock();
-    updateCalendar();
-    updateStickyNote();
+    });
   </script>
 </body>
 </html>
