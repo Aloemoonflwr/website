@@ -322,3 +322,11 @@ a,
     margin: 0.25em;
   }
 }
+/* Add this to your CSS */
+@media (min-width: 769px) {
+  .start-button {
+    width: auto !important;
+    flex: none !important;
+    margin: 0 !important;
+  }
+}
