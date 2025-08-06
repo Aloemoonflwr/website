@@ -93,7 +93,8 @@
     <div class="icon" onclick="openModal('contact')">
       <img src="https://icons.iconarchive.com/icons/graphicloads/mail/256/mail-icon.png" alt="Contact Icon" />
       <span>Contact</span>
-    </div>
+    </div> 
+    <div class="widget clock-widget" id="clockWidget"></div>
   </div>
 
   <div class="modal" id="about">
@@ -120,9 +121,18 @@
     <p>Email me or use the contact form (coming soon!).</p>
   </div>
 
-  <div class="taskbar">
-    Start
-  </div>
+<div class="taskbar">
+  <button onclick="toggleStartMenu()">Start</button>
+</div>
+  <div class="start-menu" id="startMenu">
+  <ul>
+    <li onclick="openModal('about')">🧚 About</li>
+    <li onclick="openModal('links')">🌐 Links</li>
+    <li onclick="openModal('commissions')">🎨 Commissions</li>
+    <li onclick="openModal('contact')">📬 Contact</li>
+  </ul>
+</div>
+
 
   <script>
     function openModal(id) {
@@ -132,6 +142,22 @@
     function closeModal(id) {
       document.getElementById(id).style.display = 'none';
     }
+    function toggleStartMenu() {
+  const menu = document.getElementById('startMenu');
+  menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+}
+
+// Clock widget
+function updateClock() {
+  const clock = document.getElementById('clockWidget');
+  const now = new Date();
+  const time = now.toLocaleTimeString();
+  clock.textContent = `🕒 ${time}`;
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+
   </script>
 </body>
 </html>
