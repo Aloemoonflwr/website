@@ -82,7 +82,7 @@ body {
 }
 
 .start-menu a {
-  color: #000000; /* high contrast text */
+  color: #000000; /* black text for readability */
   text-decoration: none;
   display: flex;
   align-items: center;
