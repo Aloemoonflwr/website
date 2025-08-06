@@ -223,4 +223,11 @@ a,
 * {
   cursor: url('https://github.com/Aloemoonflwr/website/raw/refs/heads/main/frog.cur'), auto !important;
 }
+.welcome-modal {
+  width: 300px;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+}
 
