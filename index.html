@@ -150,7 +150,28 @@
       font-size: 1rem;
       color: white;
       margin-right: 15px;
+    } 
+        #boot-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(to bottom, #003366, #006699);
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
     }
+    .boot-message {
+      font-size: 1.5rem;
+      animation: flicker 1.5s infinite alternate;
+    }
+    @keyframes flicker {
+      0% { opacity: 1; }
+      100% { opacity: 0.3; }
   </style>
 </head>
 <body> 
