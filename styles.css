@@ -28,27 +28,83 @@ body {
   height: 64px;
 }
 
+/* Aero Glass style window */
 .window {
   display: none;
   position: absolute;
   top: 100px;
   left: 100px;
   width: 400px;
-  background: rgba(255, 255, 255, 0.95);
-  border: 2px solid #ccc;
-  border-radius: 6px;
-  box-shadow: 2px 2px 12px rgba(0,0,0,0.5);
+  min-width: 200px;
+  min-height: 150px;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(200, 200, 200, 0.4);
+  border-radius: 8px;
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.4);
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
+/* Title bar */
+.window-title-bar,
 .title-bar {
-  background: linear-gradient(to right, #e0e0e0, #c0c0c0);
-  padding: 0.5rem;
+  background: linear-gradient(to right, rgba(240,240,240,0.85), rgba(200,200,200,0.85));
+  padding: 0.5rem 0.75rem;
   font-weight: bold;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   cursor: move;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  user-select: none;
 }
 
+.window-title-bar .close-btn,
+.title-bar .close-btn {
+  background: #e81123;
+  border: none;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  box-shadow: 0 0 2px #000;
+  transition: background 0.3s ease;
+}
+
+.window-title-bar .close-btn:hover,
+.title-bar .close-btn:hover {
+  background: #c50f1f;
+}
+
+/* Window content area */
 .content {
   padding: 1rem;
+  overflow: auto;
+  max-height: 500px;
+}
+
+/* Resizer */
+.resizer {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  width: 16px;
+  height: 16px;
+  background: transparent;
+  cursor: se-resize;
+  z-index: 10;
+}
+
+.resizer::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(135deg, #ccc 25%, transparent 25%, transparent 50%, #ccc 50%, #ccc 75%, transparent 75%, transparent);
+  background-size: 6px 6px;
+  opacity: 0.5;
 }
