@@ -539,7 +539,21 @@
         document.getElementById("boot-screen").style.display = "none";
         document.querySelector(".desktop").style.display = "flex";
       }, 2000);
+    }); 
+      $(function () {
+    // Make all modals draggable by the titlebar
+    $(".modal").draggable({
+      handle: ".modal-titlebar",
+      containment: "window" // prevents dragging offscreen
     });
+
+    // Make all modals resizable
+    $(".modal").resizable({
+      minHeight: 200,
+      minWidth: 300,
+      containment: "document"
+    });
+  });
   </script>
 </body>
 </html>
