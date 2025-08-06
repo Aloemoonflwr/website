@@ -214,3 +214,6 @@ body {
 .modal-titlebar .window-controls button:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
+body {
+  cursor: url('https://github.com/Aloemoonflwr/website/blob/e651e6cc6a17f9e592e964ec692f0a85be96b203/01%20Frog%20Normal%20Select.cur'), auto;
+}
