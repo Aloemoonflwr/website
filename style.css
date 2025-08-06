@@ -330,3 +330,7 @@ a,
     margin: 0.25rem;
   }
 }
+#weather-widget img {
+  vertical-align: middle;
+  margin-right: 5px;
+}
