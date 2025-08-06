@@ -142,6 +142,24 @@
     @keyframes bootFadeOut {
       0% { opacity: 1; }
       100% { opacity: 0; visibility: hidden; }
+    } 
+     .widgets {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      z-index: 10;
+    }
+
+    .widget {
+      background: rgba(255, 255, 255, 0.7);
+      border: 2px solid #66bb6a;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      width: 160px;
     }
   </style>
 </head>
@@ -167,7 +185,21 @@
       <span>Contact</span>
     </div>
   </div>
-
+ <div class="widgets">
+    <div class="widget">
+      <strong>🌤️ Weather:</strong><br />
+      Sunny, 82°F<br />
+      Jacksonville, NC
+    </div>
+    <div class="widget">
+      <strong>📅 Calendar:</strong><br />
+      <span id="calendar-date"></span>
+    </div>
+    <div class="widget">
+      <strong>🌱 Terrarium:</strong><br />
+      Aloe sprout status: thriving 🌿
+    </div>
+  </div>
   <div class="modal" id="about">
     <button class="close" onclick="closeModal('about')">Close</button>
     <h2>About Me</h2>
@@ -207,7 +239,7 @@
     <div class="clock" id="clock"></div>
   </div>
 
-  <script>
+   <script>
     function openModal(id) {
       document.getElementById(id).style.display = 'block';
       document.getElementById("startMenu").style.display = 'none';
@@ -227,8 +259,16 @@
       const clock = document.getElementById("clock");
       clock.textContent = now.toLocaleTimeString();
     }
+
+    function updateCalendar() {
+      const now = new Date();
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      document.getElementById("calendar-date").textContent = now.toLocaleDateString(undefined, options);
+    }
+
     setInterval(updateClock, 1000);
     updateClock();
+    updateCalendar();
   </script>
 </body>
 </html>
