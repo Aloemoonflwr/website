@@ -284,3 +284,7 @@ a,
 .next {
   right: 10px;
 }
+.modal-content .carousel {
+  width: 100%;
+  height: auto;
+}
