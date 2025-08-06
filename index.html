@@ -262,11 +262,10 @@
   </div>
  
   <div class="widgets">
-    <div class="widget">
-      <strong>🌤️ Weather:</strong><br />
-      Sunny, 82°F<br />
-      Jacksonville, NC
-    </div>
+   <div class="widget" id="weather-widget">
+  <strong>🌦️ Weather:</strong><br />
+  <span id="weather-info">Loading...</span>
+</div>
     <div class="widget">
       <strong>📅 Calendar:</strong><br />
       <span id="calendar-date"></span>
@@ -750,7 +749,37 @@
   }
 
   updateCalendarDate();
-  setInterval(updateCalendarDate, 60000); // update every minute    
+  setInterval(updateCalendarDate, 60000); // update every minute
+  }
+   async function fetchWeather() {
+    try {
+      const apiKey = "82c4908e6f65bf0c54e92800c7cac099"; // Replace with your OpenWeatherMap API key
+
+      // Get user’s approximate location via IP
+      const geoRes = await fetch("https://ipapi.co/json/");
+      const geoData = await geoRes.json();
+      const { city, latitude, longitude } = geoData;
+
+      // Get weather from OpenWeatherMap
+      const weatherRes = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`
+      );
+      const weatherData = await weatherRes.json();
+
+      const temp = Math.round(weatherData.main.temp);
+      const condition = weatherData.weather[0].description;
+      const icon = weatherData.weather[0].icon;
+
+      document.getElementById("weather-info").innerHTML =
+        `<img src="https://openweathermap.org/img/wn/${icon}.png" alt="${condition}" style="vertical-align:middle; width: 24px;"> ` +
+        `${city}: ${temp}°F, ${condition}`;
+    } catch (err) {
+      document.getElementById("weather-info").innerText = "Weather unavailable";
+      console.error(err);
+    }
+  }
+
+  fetchWeather();   
   </script>
 </body>
 </html>
