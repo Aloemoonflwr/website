@@ -45,35 +45,53 @@ body {
   color: white;
 } 
 .start-menu {
-  display: none;
-  position: fixed;
-  bottom: 50px;
-  left: 10px;
-  background: #c8e6c9;
-  border: 2px solid #81c784;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  position: absolute;
+  bottom: 60px; /* or adjust based on your taskbar */
+  left: 20px;
+  width: 220px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
   padding: 10px;
-  z-index: 999;
+  font-family: "Segoe UI", sans-serif;
+  color: #fff;
+  z-index: 1000;
 }
 
 .start-menu ul {
   list-style: none;
-  margin: 0;
   padding: 0;
+  margin: 0 0 8px 0;
 }
 
-.start-menu li {
-  padding: 8px 10px;
-  cursor: pointer;
-  font-size: 14px;
+.start-menu ul li {
+  padding: 6px 10px;
   border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
 
-.start-menu li:hover {
-  background-color: #a5d6a7;
+.start-menu ul li:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
+.start-menu a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.start-menu a:hover {
+  text-decoration: underline;
+}
+
+.start-menu hr {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 8px 0;
+}
 .taskbar button {
   background: #a5d6a7;
   border: none;
