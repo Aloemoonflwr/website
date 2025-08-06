@@ -119,25 +119,28 @@ body {
   font-size: 14px;
 }
 .modal-titlebar {
-  background: linear-gradient(to bottom, #e3e3e3, #cfcfcf);
-  padding: 6px 10px;
+  background: linear-gradient(to bottom, #e4e4e4, #ccc);
+  padding: 5px 10px;
   border-bottom: 1px solid #999;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 14px;
+  color: black;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-  cursor: move; /* if you make it draggable later */
+  cursor: default;
 }
 
 .modal .close {
-  background: #e74c3c;
+  background: #d9534f;
+  border: 1px solid #999;
   color: white;
-  border: none;
-  border-radius: 3px;
-  padding: 4px 8px;
-  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 0 8px;
+  height: 24px;
+  font-size: 16px;
+  line-height: 24px;
+  border-radius: 0;
   cursor: pointer;
 }
+
