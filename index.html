@@ -190,6 +190,47 @@
       0% { opacity: 1; }
       100% { opacity: 0.3; }
     }
+    @media (max-width: 768px) {
+  .modal {
+    width: 90vw;
+    height: 90vh;
+    left: 5vw !important;
+    top: 5vh !important;
+    font-size: 0.9rem;
+  }
+
+  .modal-content {
+    overflow-y: auto;
+    max-height: 75vh;
+  }
+
+  .carousel img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .window-controls button {
+    padding: 0.25em 0.5em;
+    font-size: 1rem;
+  }
+
+  .carousel-btn {
+    font-size: 1.5rem;
+    padding: 0.25em;
+  }
+}
+ @media (max-width: 600px) {
+  .taskbar {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .taskbar button {
+    flex: 1 1 45%;
+    margin: 0.25rem;
+  }
+}   
   </style>
 </head>
 <body>
@@ -695,6 +736,9 @@
     currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
     track.style.transform = `translateX(-${currentSlide * 100}%)`;
   }   
+  if (window.innerWidth < 768) {
+  $(".modal").draggable("disable");
+}   
   </script>
 </body>
 </html>
