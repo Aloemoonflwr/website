@@ -256,20 +256,16 @@
   </ul>
 </div>
 
-  <div class="start-menu" id="startMenu">
-    <p><strong>Aloe's Start Menu</strong></p>
-    <ul>
-      <li><a href="#" onclick="openModal('about')">About</a></li>
-      <li><a href="#" onclick="openModal('links')">Links</a></li>
-      <li><a href="#" onclick="openModal('commissions')">Commissions</a></li>
-      <li><a href="#" onclick="openModal('contact')">Contact</a></li>
-    </ul>
-  </div>
-
   <div class="taskbar">
     <button class="start-button" onclick="toggleStartMenu()">Start</button>
-    <div id="open-programs" style="flex: 1; display: flex; gap: 5px; padding-left: 10px;"></div>
-    <div class="clock" id="clock"></div> 
+    <div class="start-menu" id="start-menu">
+      <p><strong>Programs</strong></p>
+      <ul>
+        <li><a href="#" onclick="openModal('about')">About Me</a></li>
+        <li><a href="#" onclick="openModal('projects')">Projects</a></li>
+      </ul>
+    </div>
+    <div class="clock" id="clock"></div>
   </div>
   
    <script>
