@@ -527,13 +527,41 @@
 
   <div class="taskbar">
     <button class="start-button" onclick="toggleStartMenu()">Start</button>
-    <div class="start-menu" id="start-menu">
-      <p><strong>Programs</strong></p>
-      <ul>
-        <li><a href="#" onclick="openModal('about')">About Me</a></li>
-        <li><a href="#" onclick="openModal('projects')">Projects</a></li>
-      </ul>
-    </div>
+<div id="start-menu" class="start-menu">
+  <ul>
+    <li onclick="document.getElementById('about').style.display = 'block'">🧍 About Me</li>
+    <li onclick="document.getElementById('commissions').style.display = 'block'">🎨 Commissions</li>
+    <li onclick="document.getElementById('links').style.display = 'block'">🔗 Links</li>
+  </ul>
+
+  <hr>
+
+  <ul>
+    <li>
+      <a href="https://docs.google.com/document/d/1Ht8WFlYPTHVGTJDZo4yvl3CSHsdSeQPPEeWQ-tcr0jQ/edit?usp=sharing" target="_blank">
+        📄 Full Commissions Doc
+      </a>
+    </li>
+    <li>
+      <a href="mailto:aloemoonflwr@gmail.com">
+        📬 Email Me
+      </a>
+    </li>
+    <li>
+      <a href="https://aloemoonflwr.tumblr.com" target="_blank">
+        🐸 Tumblr
+      </a>
+    </li>
+  </ul>
+
+  <hr>
+
+  <ul>
+    <li onclick="document.getElementById('frog-secret').style.display = 'block'">
+      🐸 Secret Frog File
+    </li>
+  </ul>
+</div>
     <div class="clock" id="clock"></div>
   </div>
   
