@@ -49,15 +49,14 @@ body {
   bottom: 60px;
   left: 20px;
   width: 240px;
-  background: rgba(30, 30, 30, 0.65); /* Darker glass */
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(25, 25, 25, 0.75); /* much darker glass */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
   padding: 10px;
   font-family: "Segoe UI", sans-serif;
-  color: #f0f0f0; /* Lighter text */
   z-index: 1000;
 }
 
@@ -70,12 +69,12 @@ body {
 .start-menu ul li {
   display: flex;
   align-items: center;
-  padding: 6px 10px;
+  padding: 8px 10px;
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.2s ease;
-  color: #f0f0f0;
   font-size: 15px;
+  font-weight: 500;
 }
 
 .start-menu ul li:hover {
@@ -83,7 +82,7 @@ body {
 }
 
 .start-menu a {
-  color: #f0f0f0;
+  color: #ffffff; /* high contrast text */
   text-decoration: none;
   display: flex;
   align-items: center;
