@@ -336,7 +336,7 @@ a,
 }
 /* Desktop icons container */
 .icon {
-  position: relative;
+  position: absolute;
   z-index: 1;
 }
 
@@ -354,4 +354,21 @@ a,
 .start-menu {
   pointer-events: auto; /* default */
 }
-
+#start-menu {
+  position: fixed; /* ensures it's on top of everything and not affected by parents */
+  bottom: 50px; /* adjust based on your taskbar height */
+  left: 20px;
+  z-index: 9999; /* max stacking */
+  background: var(--window-bg, #d8f3dc); /* optional fallback background */
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+#taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  z-index: 10000; /* higher than icons, potentially equal to or higher than start menu */
+}
