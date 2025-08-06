@@ -214,6 +214,9 @@ body {
 .modal-titlebar .window-controls button:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
-body {
-  cursor: url('https://github.com/Aloemoonflwr/website/raw/refs/heads/main/frog.cur'), auto;
+body,
+.desktop,
+.modal,
+.start-menu {
+  cursor: url('https://github.com/Aloemoonflwr/website/raw/refs/heads/main/frog.cur'), auto !important;
 }
