@@ -231,26 +231,22 @@ a,
   z-index: 9999;
 }
 .carousel {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  position: relative;
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 80vh;
-  margin: 10px auto;
-  background: rgba(255, 255, 255, 0.7);
-  padding: 10px;
+  background: #fff;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px;
 }
 
 .carousel-track {
   display: flex;
-  transition: transform 0.3s ease;
-  align-items: center;
+  transition: transform 0.5s ease;
 }
 
 .carousel-track img {
@@ -259,8 +255,9 @@ a,
   width: auto;
   height: auto;
   object-fit: contain;
-  margin: 0 10px;
+  border-radius: 6px;
 }
+
 .carousel-btn {
   position: absolute;
   top: 50%;
