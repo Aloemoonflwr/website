@@ -742,6 +742,15 @@
     containment: "window"
   });
 }
+  function updateCalendarDate() {
+    const now = new Date();
+    const dateStr = now.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    document.getElementById('calendar-date').textContent = `${dateStr} – ${timeStr}`;
+  }
+
+  updateCalendarDate();
+  setInterval(updateCalendarDate, 60000); // update every minute    
   </script>
 </body>
 </html>
