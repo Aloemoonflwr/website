@@ -334,3 +334,24 @@ a,
   vertical-align: middle;
   margin-right: 5px;
 }
+/* Desktop icons container */
+.desktop-icon {
+  position: relative;
+  z-index: 1;
+}
+
+/* Start menu container */
+#start-menu, .start-menu {
+  position: absolute; /* or fixed, depending on how you're using it */
+  bottom: 40px; /* adjust based on your layout */
+  left: 10px;
+  z-index: 9999; /* high value to ensure it's on top */
+}
+.desktop-icon {
+  pointer-events: auto; /* default */
+}
+
+.start-menu {
+  pointer-events: auto; /* default */
+}
+
