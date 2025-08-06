@@ -326,10 +326,21 @@ a,
 }
 /* Add this to your CSS */
 @media (min-width: 769px) {
-  .taskbar button {
+  .start-button {
     width: auto !important;
     flex: none !important;
     margin: 0 !important;
   }
 }
 
+.start-button {
+  background: #e0e0e0;
+  color: black;
+  padding: 4px 12px;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  width: auto; /* Explicit width */
+  flex: none; /* Don't let it grow */
+}
