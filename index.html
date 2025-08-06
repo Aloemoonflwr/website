@@ -675,6 +675,16 @@
   window.onload = function () {
     document.getElementById('welcome-modal').style.display = 'block';
   };
+   let currentSlide = 0;
+
+  function moveSlide(direction) {
+    const track = document.querySelector('.carousel-track');
+    const slides = document.querySelectorAll('.carousel img');
+    const totalSlides = slides.length;
+
+    currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+  }   
   </script>
 </body>
 </html>
