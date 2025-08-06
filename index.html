@@ -5,26 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aloe's Desktop</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #a5d6a7; /* soft green */
-      background-image: url('https://i.ibb.co/gFVVW9Xg/Img27-28-Windows-729.png'); /* replace with actual hosted URL */
+      background-color: #a5d6a7;
+      background-image: url('https://i.ibb.co/gFVVW9Xg/Img27-28-Windows-729.png');
       background-repeat: no-repeat;
       background-position: center center;
       background-size: cover;
       background-attachment: fixed;
-
       color: #2e5d34;
     }
 
- .desktop {
+    .desktop {
       display: flex;
       flex-direction: column;
-      padding: 20px 10px 20px 10px;
+      padding: 20px 10px;
       gap: 20px;
       position: fixed;
       top: 0;
@@ -52,34 +51,48 @@
       text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
     }
 
-.modal {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 500px;
-  max-height: 80vh;
-  overflow-y: auto;
-  background-color: #f0f0f0;
-  border: 2px solid #aaa;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-  font-family: 'Segoe UI', sans-serif;
-  z-index: 1000;
-}
-
-    .modal h2 {
-      margin-top: 0;
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      max-height: 80vh;
+      overflow-y: auto;
+      background-color: #f0f0f0;
+      border: 2px solid #aaa;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+      font-family: 'Segoe UI', sans-serif;
+      z-index: 1000;
     }
 
-    .modal .close {
+    .modal-titlebar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #cfe8cf;
+      padding: 6px 10px;
+      font-weight: bold;
+      border-bottom: 1px solid #aaa;
+    }
+
+    .window-title {
+      flex-grow: 1;
+    }
+
+    .window-controls button {
       background: #66bb6a;
       color: white;
       border: none;
-      padding: 6px 12px;
-      border-radius: 5px;
+      padding: 4px 10px;
+      border-radius: 3px;
+      margin-left: 5px;
       cursor: pointer;
-      float: right;
+    }
+
+    .modal-content {
+      padding: 15px;
     }
 
     .widgets {
@@ -151,8 +164,9 @@
       font-size: 1rem;
       color: white;
       margin-right: 15px;
-    } 
-        #boot-screen {
+    }
+
+    #boot-screen {
       position: fixed;
       top: 0;
       left: 0;
@@ -166,20 +180,23 @@
       align-items: center;
       z-index: 9999;
     }
+
     .boot-message {
       font-size: 1.5rem;
       animation: flicker 1.5s infinite alternate;
     }
+
     @keyframes flicker {
       0% { opacity: 1; }
       100% { opacity: 0.3; }
     }
   </style>
 </head>
-<body> 
+<body>
+  <!-- Boot screen -->
   <div id="boot-screen">
-  <div class="boot-message">Loading up Moonflwr OS...</div>
-</div>
+    <div class="boot-message">Loading up Moonflwr OS...</div>
+  </div>
   <div class="desktop">
     <div class="icon" onclick="openModal('about')">
       <img src="https://i.ibb.co/zHF9smtv/tumblr-62228acd167a2c86872b236e7e376088-c7e5abd3-1280.png" alt="About Icon" />
@@ -524,7 +541,7 @@
     }
 
     function minimizeModal(id) {
-      document.getElementById(id).style.display = 'none'; // simple minimize
+      document.getElementById(id).style.display = 'none';
     }
 
     function toggleStartMenu() {
@@ -547,6 +564,7 @@
       "You look cute today.",
       "Code break = snack break!"
     ];
+
     function updateStickyNote() {
       const randomMessage = messages[Math.floor(Math.random() * messages.length)];
       document.getElementById('sticky-note').textContent = randomMessage;
@@ -558,21 +576,20 @@
         document.getElementById("boot-screen").style.display = "none";
         document.querySelector(".desktop").style.display = "flex";
       }, 2000);
-    }); 
-      $(function () {
-    // Make all modals draggable by the titlebar
-    $(".modal").draggable({
-      handle: ".modal-titlebar",
-      containment: "window" // prevents dragging offscreen
     });
 
-    // Make all modals resizable
-    $(".modal").resizable({
-      minHeight: 200,
-      minWidth: 300,
-      containment: "document"
+    $(function () {
+      $(".modal").draggable({
+        handle: ".modal-titlebar",
+        containment: "window"
+      });
+
+      $(".modal").resizable({
+        minHeight: 200,
+        minWidth: 300,
+        containment: "document"
+      });
     });
-  });
   </script>
 </body>
 </html>
