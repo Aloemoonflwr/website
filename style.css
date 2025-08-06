@@ -313,15 +313,21 @@ a,
     height: auto;
   }
 
-  .taskbar {
+   .taskbar {
     flex-wrap: wrap;
     justify-content: center;
   }
 
-  .taskbar button {
+  .taskbar button:not(.start-btn) {
     flex: 1 1 45%;
     margin: 0.25rem;
-    width: auto; /* Reset width for mobile */
+    width: auto;
+  }
+
+  .start-btn {
+    flex: none;
+    width: auto;
+    margin: 0.25rem;
   }
 }
 /* Add this to your CSS */
