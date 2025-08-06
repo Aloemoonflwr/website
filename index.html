@@ -250,10 +250,7 @@
     <div id="open-programs" style="flex: 1; display: flex; gap: 5px; padding-left: 10px;"></div>
     <div class="clock" id="clock"></div> 
   </div>
-
-  <div id="bluescreen" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#0000AA; color:white; font-family:monospace; font-size:1.2rem; padding:20px; z-index:9999;">
-  <p>*** STOP: 0x000000D3 ***<br><br>A problem has been detected and Windows has been shut down to prevent damage.<br><br>If this is the first time you've seen this error screen, restart your computer.<br><br><br>Press F to pay respects...</p>
-</div>
+  
    <script>
     function openModal(id) {
       document.getElementById(id).style.display = 'block';
@@ -305,12 +302,6 @@
     btn.classList.add("start-button");
     document.getElementById("open-programs").appendChild(btn);
   }
-}
-  document.addEventListener('keydown', (e) => {
-  if (e.key === 'f' || e.key === 'F') {
-    document.getElementById('bluescreen').style.display = 'block';
-  }
-});
     setInterval(updateClock, 1000);
     updateClock();
     updateCalendar();
