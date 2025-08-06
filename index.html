@@ -3,80 +3,135 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aero File Explorer</title>
-  <link rel="stylesheet" href="desktop.css" />
-  <script defer src="main.js"></script>
+  <title>Aloe's Desktop</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #a5d6a7; /* soft green */
+      background-image: url('https://www.transparenttextures.com/patterns/green-dust-and-scratches.png');
+      color: #2e5d34;
+    }
+
+    .desktop {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      width: 80px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .icon img {
+      width: 48px;
+      height: 48px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #e8f5e9;
+      border: 2px solid #81c784;
+      padding: 20px;
+      z-index: 1000;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      border-radius: 12px;
+    }
+
+    .modal h2 {
+      margin-top: 0;
+    }
+
+    .modal .close {
+      background: #66bb6a;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      float: right;
+    }
+
+    .taskbar {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #388e3c;
+      padding: 10px;
+      text-align: left;
+      color: white;
+    }
+  </style>
 </head>
 <body>
-  <div id="desktop">
-    <div class="desktop-icon" data-target="about-window">
-      <img src="icons/about.png" alt="About Icon">
-      <span>About Me</span>
+  <div class="desktop">
+    <div class="icon" onclick="openModal('about')">
+      <img src="https://icons.iconarchive.com/icons/graphicloads/100-flat/256/home-icon.png" alt="About Icon" />
+      <span>About</span>
     </div>
-    <div class="desktop-icon" data-target="commissions-window">
-      <img src="icons/commissions.png" alt="Commissions Icon">
-      <span>Commissions</span>
-    </div>
-    <div class="desktop-icon" data-target="contact-window">
-      <img src="icons/contact.png" alt="Contact Icon">
-      <span>Contact</span>
-    </div>
-    <div class="desktop-icon" data-target="links-window">
-      <img src="icons/links.png" alt="Links Icon">
+    <div class="icon" onclick="openModal('links')">
+      <img src="https://icons.iconarchive.com/icons/custom-icon-design/pretty-office-8/256/Link-icon.png" alt="Links Icon" />
       <span>Links</span>
     </div>
-  </div>
-
-  <div class="window" id="about-window">
-    <div class="window-title-bar">
-      <span>About Me</span>
-      <button class="close-btn">✕</button>
-    </div>
-    <div class="window-content">
-      <p>Welcome to my retro-style website!</p>
-    </div>
-  </div>
-
-  <div class="window" id="commissions-window">
-    <div class="window-title-bar">
+    <div class="icon" onclick="openModal('commissions')">
+      <img src="https://icons.iconarchive.com/icons/paomedia/small-n-flat/256/money-icon.png" alt="Commissions Icon" />
       <span>Commissions</span>
-      <button class="close-btn">✕</button>
     </div>
-    <div class="window-content">
-      <p>Commission menu goes here.</p>
-    </div>
-  </div>
-
-  <div class="window" id="contact-window">
-    <div class="window-title-bar">
+    <div class="icon" onclick="openModal('contact')">
+      <img src="https://icons.iconarchive.com/icons/graphicloads/mail/256/mail-icon.png" alt="Contact Icon" />
       <span>Contact</span>
-      <button class="close-btn">✕</button>
-    </div>
-    <div class="window-content">
-      <p>Contact form coming soon!</p>
     </div>
   </div>
 
-  <div class="window" id="links-window">
-    <div class="window-title-bar">
-      <span>Links</span>
-      <button class="close-btn">✕</button>
-    </div>
-    <div class="window-content">
-      <p>Links to my stuff (Tumblr, Twitch, etc.)</p>
-    </div>
+  <div class="modal" id="about">
+    <button class="close" onclick="closeModal('about')">Close</button>
+    <h2>About Me</h2>
+    <p>Hello! I'm Aloe. Welcome to my cozy retro-frog-cottagecore site. 🌿</p>
   </div>
 
-  <div id="taskbar">
-    <button id="start-btn">Start</button>
-    <div id="start-menu">
-      <ul>
-        <li data-target="about-window">About</li>
-        <li data-target="commissions-window">Commissions</li>
-        <li data-target="contact-window">Contact</li>
-        <li data-target="links-window">Links</li>
-      </ul>
-    </div>
+  <div class="modal" id="links">
+    <button class="close" onclick="closeModal('links')">Close</button>
+    <h2>Links</h2>
+    <p><a href="#">Tumblr</a> | <a href="#">Twitch</a> | <a href="#">Neocities</a></p>
   </div>
+
+  <div class="modal" id="commissions">
+    <button class="close" onclick="closeModal('commissions')">Close</button>
+    <h2>Commissions</h2>
+    <p>Commission sheet goes here. Pricing, examples, and how to order. 💌</p>
+  </div>
+
+  <div class="modal" id="contact">
+    <button class="close" onclick="closeModal('contact')">Close</button>
+    <h2>Contact</h2>
+    <p>Email me or use the contact form (coming soon!).</p>
+  </div>
+
+  <div class="taskbar">
+    Start
+  </div>
+
+  <script>
+    function openModal(id) {
+      document.getElementById(id).style.display = 'block';
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+  </script>
 </body>
 </html>
