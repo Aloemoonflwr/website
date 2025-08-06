@@ -69,10 +69,43 @@
       position: fixed;
       bottom: 0;
       width: 100%;
-      background: #388e3c;
+      background: #2e7d32;
+      padding: 5px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: inset 0 1px 2px rgba(255,255,255,0.3);
+    }
+
+    .start-button {
+      background: #e0e0e0;
+      color: black;
+      padding: 4px 12px;
+      font-weight: bold;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .start-menu {
+      display: none;
+      position: absolute;
+      bottom: 45px;
+      left: 10px;
+      width: 200px;
+      background: #c8e6c9;
+      border: 2px solid #66bb6a;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
       padding: 10px;
-      text-align: left;
+      z-index: 999;
+    }
+
+    .clock {
+      font-weight: bold;
+      font-size: 1rem;
       color: white;
+      margin-right: 15px;
     }
   </style>
 </head>
@@ -93,8 +126,7 @@
     <div class="icon" onclick="openModal('contact')">
       <img src="https://icons.iconarchive.com/icons/graphicloads/mail/256/mail-icon.png" alt="Contact Icon" />
       <span>Contact</span>
-    </div> 
-    <div class="widget clock-widget" id="clockWidget"></div>
+    </div>
   </div>
 
   <div class="modal" id="about">
@@ -121,43 +153,43 @@
     <p>Email me or use the contact form (coming soon!).</p>
   </div>
 
-<div class="taskbar">
-  <button onclick="toggleStartMenu()">Start</button>
-</div>
   <div class="start-menu" id="startMenu">
-  <ul>
-    <li onclick="openModal('about')">🧚 About</li>
-    <li onclick="openModal('links')">🌐 Links</li>
-    <li onclick="openModal('commissions')">🎨 Commissions</li>
-    <li onclick="openModal('contact')">📬 Contact</li>
-  </ul>
-</div>
+    <p><strong>Aloe's Start Menu</strong></p>
+    <ul>
+      <li><a href="#" onclick="openModal('about')">About</a></li>
+      <li><a href="#" onclick="openModal('links')">Links</a></li>
+      <li><a href="#" onclick="openModal('commissions')">Commissions</a></li>
+      <li><a href="#" onclick="openModal('contact')">Contact</a></li>
+    </ul>
+  </div>
 
+  <div class="taskbar">
+    <button class="start-button" onclick="toggleStartMenu()">Start</button>
+    <div class="clock" id="clock"></div>
+  </div>
 
   <script>
     function openModal(id) {
       document.getElementById(id).style.display = 'block';
+      document.getElementById("startMenu").style.display = 'none';
     }
 
     function closeModal(id) {
       document.getElementById(id).style.display = 'none';
     }
+
     function toggleStartMenu() {
-  const menu = document.getElementById('startMenu');
-  menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
-}
+      const menu = document.getElementById("startMenu");
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
 
-// Clock widget
-function updateClock() {
-  const clock = document.getElementById('clockWidget');
-  const now = new Date();
-  const time = now.toLocaleTimeString();
-  clock.textContent = `🕒 ${time}`;
-}
-
-setInterval(updateClock, 1000);
-updateClock();
-
+    function updateClock() {
+      const now = new Date();
+      const clock = document.getElementById("clock");
+      clock.textContent = now.toLocaleTimeString();
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
   </script>
 </body>
 </html>
