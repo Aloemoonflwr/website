@@ -289,7 +289,7 @@
       const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
       document.getElementById("calendar-date").textContent = now.toLocaleDateString(undefined, options);
     }
-     function updateStickyNote() {
+    function updateStickyNote() {
       const messages = [
         "Don't forget to drink water 💧",
         "You are doing great 💖",
@@ -298,13 +298,12 @@
         "One thing at a time 🐸",
         "Did you blink today? 👀"
       ];
-      const randomMsg = messages[Math.floor(Math.random() * messages.length)];
-      const stickyNoteEl = document.getElementById("sticky-note");
-      if (stickyNoteEl) {
-        stickyNoteEl.innerText = randomMsg;
-      }
+      const randomIndex = Math.floor(Math.random() * messages.length);
+      const message = messages[randomIndex];
+      document.getElementById("sticky-note").textContent = message;
     }
-     
+
+    window.addEventListener('DOMContentLoaded', () => {
     setInterval(updateClock, 1000);
     updateClock();
     updateCalendar();
