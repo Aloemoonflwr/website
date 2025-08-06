@@ -1,0 +1,1 @@
+Hello! WElcome to the repo for my netlify website! please do not make any pull requests as this is still a WIP! but it is a fully fleshed out windows 7 inspired website. But you can find the preview for it over at aloemoonflwr.art if you wanna take a peek! :3 
