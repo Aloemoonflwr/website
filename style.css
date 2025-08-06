@@ -217,6 +217,10 @@ body {
 body,
 .desktop,
 .modal,
-.start-menu {
+.start-menu,
+button,
+a,
+* {
   cursor: url('https://github.com/Aloemoonflwr/website/raw/refs/heads/main/frog.cur'), auto !important;
 }
+
