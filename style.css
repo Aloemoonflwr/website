@@ -195,3 +195,22 @@ body {
 #secret-frog {
   color: #000000 !important;
 }
+/* Make all modal headers and buttons readable */
+.modal-titlebar,
+.modal-titlebar button,
+.modal-titlebar .window-controls button,
+.start-menu,
+.start-menu * {
+  color: #000 !important;
+}
+
+/* Force dark text for all links in the start menu */
+.start-menu a {
+  color: #000 !important;
+}
+
+/* Fix button hover if needed */
+.modal-titlebar button:hover,
+.modal-titlebar .window-controls button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
