@@ -181,3 +181,17 @@ body {
   height: calc(100% - 28px);
   overflow-y: auto;
 }
+.modal-content a,
+.start-menu a {
+  color: #000000 !important; /* force black text */
+  text-decoration: none;
+}
+
+.modal-content a:hover,
+.start-menu a:hover {
+  text-decoration: underline;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+#secret-frog {
+  color: #000000 !important;
+}
