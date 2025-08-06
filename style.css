@@ -118,3 +118,26 @@ body {
   font-family: monospace;
   font-size: 14px;
 }
+.modal-titlebar {
+  background: linear-gradient(to bottom, #e3e3e3, #cfcfcf);
+  padding: 6px 10px;
+  border-bottom: 1px solid #999;
+  font-weight: bold;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  cursor: move; /* if you make it draggable later */
+}
+
+.modal .close {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
