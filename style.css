@@ -335,7 +335,7 @@ a,
   margin-right: 5px;
 }
 /* Desktop icons container */
-.desktop-icon {
+.icon {
   position: relative;
   z-index: 1;
 }
@@ -347,7 +347,7 @@ a,
   left: 10px;
   z-index: 9999; /* high value to ensure it's on top */
 }
-.desktop-icon {
+.icon {
   pointer-events: auto; /* default */
 }
 
