@@ -2,28 +2,68 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AloeMoonflwr's Desktop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aero Desktop</title>
   <link rel="stylesheet" href="desktop.css" />
 </head>
 <body>
-  <!-- Desktop Area -->
   <div id="desktop">
     <div class="desktop-icon" data-target="about-window">
-      <img src="icons/about.png" alt="About Me" />
+      <img src="icons/about.png" alt="About Icon">
       <span>About Me</span>
     </div>
     <div class="desktop-icon" data-target="commissions-window">
-      <img src="icons/commissions.png" alt="Commissions" />
+      <img src="icons/commissions.png" alt="Commissions Icon">
       <span>Commissions</span>
     </div>
     <div class="desktop-icon" data-target="contact-window">
-      <img src="icons/contact.png" alt="Contact" />
+      <img src="icons/contact.png" alt="Contact Icon">
       <span>Contact</span>
     </div>
     <div class="desktop-icon" data-target="links-window">
-      <img src="icons/links.png" alt="Links" />
+      <img src="icons/links.png" alt="Links Icon">
       <span>Links</span>
+    </div>
+  </div>
+
+  <!-- Windows -->
+  <div class="window" id="about-window">
+    <div class="window-title-bar">
+      <span>About Me</span>
+      <button class="close-btn">✖</button>
+    </div>
+    <div class="window-content">
+      <p>Welcome to my retro-style website!</p>
+    </div>
+  </div>
+
+  <div class="window" id="commissions-window">
+    <div class="window-title-bar">
+      <span>Commissions</span>
+      <button class="close-btn">✖</button>
+    </div>
+    <div class="window-content">
+      <p>Commission menu goes here.</p>
+    </div>
+  </div>
+
+  <div class="window" id="contact-window">
+    <div class="window-title-bar">
+      <span>Contact</span>
+      <button class="close-btn">✖</button>
+    </div>
+    <div class="window-content">
+      <p>Contact form coming soon!</p>
+    </div>
+  </div>
+
+  <div class="window" id="links-window">
+    <div class="window-title-bar">
+      <span>Links</span>
+      <button class="close-btn">✖</button>
+    </div>
+    <div class="window-content">
+      <p>Links to my stuff (Tumblr, Twitch, etc.)</p>
     </div>
   </div>
 
@@ -40,48 +80,6 @@
     </div>
   </div>
 
-  <!-- Windows -->
-  <div class="window" id="about-window">
-    <div class="window-title-bar">
-      <span>About Me</span>
-      <button class="close-btn">×</button>
-    </div>
-    <div class="window-content">
-      <p>Welcome to my retro-style website!</p>
-    </div>
-  </div>
-
-  <div class="window" id="commissions-window">
-    <div class="window-title-bar">
-      <span>Commissions</span>
-      <button class="close-btn">×</button>
-    </div>
-    <div class="window-content">
-      <p>Commission menu goes here.</p>
-    </div>
-  </div>
-
-  <div class="window" id="contact-window">
-    <div class="window-title-bar">
-      <span>Contact</span>
-      <button class="close-btn">×</button>
-    </div>
-    <div class="window-content">
-      <p>Contact form coming soon!</p>
-    </div>
-  </div>
-
-  <div class="window" id="links-window">
-    <div class="window-title-bar">
-      <span>Links</span>
-      <button class="close-btn">×</button>
-    </div>
-    <div class="window-content">
-      <p>Links to my stuff (Tumblr, Twitch, etc.)</p>
-    </div>
-  </div>
-
-  <!-- Scripts -->
   <script src="main.js"></script>
 </body>
 </html>
