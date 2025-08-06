@@ -625,7 +625,6 @@
         containment: "document"
       });
     }); 
-   <script>
   let frogClicked = false;
 
   function triggerFrogScream() {
@@ -640,6 +639,14 @@
       window.location.href = 'https://www.mramphibian.com/frog-facts';
     }, 3000); // Adjust delay to match sound length
   }
+
+  // Wait until everything has loaded
+  window.addEventListener("load", () => {
+    const bootScreen = document.getElementById("boot-screen");
+    if (bootScreen) {
+      bootScreen.style.display = "none"; // Hides the loading screen
+    }
+  });
   </script>
 </body>
 </html>
