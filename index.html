@@ -323,6 +323,12 @@
     btn.classList.add("start-button");
     document.getElementById("open-programs").appendChild(btn);
   }
+     window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("boot-screen").style.display = "none";
+        document.querySelector(".desktop").style.display = "flex";
+      }, 2000);
+    });      
     setInterval(updateClock, 1000);
     updateClock();
     updateCalendar();
