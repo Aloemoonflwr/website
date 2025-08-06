@@ -736,9 +736,21 @@
     currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
     track.style.transform = `translateX(-${currentSlide * 100}%)`;
   }   
+  if (window.innerWidth >= 768) {
+  $(".modal").draggable({
+    handle: ".modal-titlebar",
+    containment: "window"
+  });
+}
+function openModal(id) {
+  const modal = document.getElementById(id);
+  modal.style.display = "block";
+
   if (window.innerWidth < 768) {
-  $(".modal").draggable("disable");
-}   
+    modal.style.left = "2.5vw";
+    modal.style.top = "5vh";
+  }
+}
   </script>
 </body>
 </html>
