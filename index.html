@@ -1,109 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Moss & Moonlight</title>
-  <link rel="stylesheet" href="desktop.css">
-  <script defer src="main.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AloeMoonflwr's Desktop</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Desktop Icons -->
+  <!-- Desktop Area -->
   <div id="desktop">
     <div class="desktop-icon" data-target="about-window">
-      <img src="folder-icon.png" alt="About">
-      <p>About</p>
-    </div>
-    <div class="desktop-icon" data-target="links-window">
-      <img src="folder-icon.png" alt="Links">
-      <p>Links</p>
+      <img src="icons/about.png" alt="About Me" />
+      <span>About Me</span>
     </div>
     <div class="desktop-icon" data-target="commissions-window">
-      <img src="folder-icon.png" alt="Commissions">
-      <p>Commissions</p>
+      <img src="icons/commissions.png" alt="Commissions" />
+      <span>Commissions</span>
     </div>
     <div class="desktop-icon" data-target="contact-window">
-      <img src="shortcut-icon.png" alt="Contact">
-      <p>Contact</p>
-    </div>
-  </div>
-
-  <!-- Windows -->
-  <div class="window" id="about-window">
-    <div class="window-title-bar">
-      <span>About Me</span>
-      <button class="close-btn">&times;</button>
-    </div>
-    <div class="window-content">
-      <p>Hello! I'm Aloe, a collage artist with a love for frogs, soft horror, and witchy aesthetics. I make dreamy vintage-inspired art with a hint of magic...</p>
-    </div>
-  </div>
-
-  <div class="window" id="links-window">
-    <div class="window-title-bar">
-      <span>Links</span>
-      <button class="close-btn">&times;</button>
-    </div>
-    <div class="window-content">
-      <ul>
-        <li><a href="https://aloemoonflwr.tumblr.com" target="_blank">Tumblr</a></li>
-        <li><a href="https://twitter.com/aloemoonflwr" target="_blank">Twitter</a></li>
-        <li><a href="https://pinterest.com/aloemoonflwr" target="_blank">Pinterest</a></li>
-        <li><a href="https://deviantart.com/aloemoonflwr" target="_blank">DeviantArt</a></li>
-        <li><a href="https://payhip.com/aloemoonflwr" target="_blank">Payhip</a></li>
-        <li><a href="https://aloemoonflwr.gumroad.com" target="_blank">Gumroad</a></li>
-        <li><a href="https://ko-fi.com/aloemoonflwr" target="_blank">Ko-fi</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="window" id="commissions-window">
-    <div class="window-title-bar">
-      <span>Commissions</span>
-      <button class="close-btn">&times;</button>
-    </div>
-    <div class="window-content">
-      <p>I'm currently open for Photoshop-based commissions including RP icons, promos, collage art, profile edits, and Twitch overlays and panels.</p>
-      <h3>Menu & Pricing</h3>
-      <ul>
-        <li><strong>RP Icon Packs:</strong> 10 icons for $5, 20 for $8, 30 for $12</li>
-        <li><strong>Profile Picture Edits:</strong> $3 each</li>
-        <li><strong>Promo Graphics:</strong> Starting at $8</li>
-        <li><strong>Collage Art:</strong> Starting at $10</li>
-        <li><strong>Twitch Overlays/Panels:</strong> Starting at $12</li>
-      </ul>
-      <p>🔸 Larger projects may require a 25% deposit upfront. PayPal or Ko-fi is accepted.</p>
-      <form action="https://formspree.io/f/xnnpwewz" method="POST">
-        <label>Name:<br><input type="text" name="name" required></label><br>
-        <label>Email:<br><input type="email" name="email" required></label><br>
-        <label>Commission Type:<br>
-          <select name="type" required>
-            <option value="icons">RP Icons</option>
-            <option value="promos">Promos</option>
-            <option value="collage">Collage Art</option>
-            <option value="overlay">Twitch Overlay</option>
-            <option value="other">Other</option>
-          </select>
-        </label><br>
-        <label>Description:<br><textarea name="description" rows="4" required></textarea></label><br>
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-  </div>
-
-  <div class="window" id="contact-window">
-    <div class="window-title-bar">
+      <img src="icons/contact.png" alt="Contact" />
       <span>Contact</span>
-      <button class="close-btn">&times;</button>
     </div>
-    <div class="window-content">
-      <p>Have any questions? Just want to say hello? You can contact me at <strong>aloemoonflwr@gmail.com</strong> or on Discord at <strong>AloeMoonflwr</strong>!</p>
+    <div class="desktop-icon" data-target="links-window">
+      <img src="icons/links.png" alt="Links" />
+      <span>Links</span>
     </div>
   </div>
 
-  <!-- Start Bar -->
+  <!-- Taskbar -->
   <div id="taskbar">
-    <div id="start-btn">Start</div>
+    <button id="start-btn">Start</button>
     <div id="start-menu">
       <ul>
         <li data-target="about-window">About</li>
@@ -113,5 +39,49 @@
       </ul>
     </div>
   </div>
+
+  <!-- Windows -->
+  <div class="window" id="about-window">
+    <div class="window-title-bar">
+      <span>About Me</span>
+      <button class="close-btn">×</button>
+    </div>
+    <div class="window-content">
+      <p>Welcome to my retro-style website!</p>
+    </div>
+  </div>
+
+  <div class="window" id="commissions-window">
+    <div class="window-title-bar">
+      <span>Commissions</span>
+      <button class="close-btn">×</button>
+    </div>
+    <div class="window-content">
+      <p>Commission menu goes here.</p>
+    </div>
+  </div>
+
+  <div class="window" id="contact-window">
+    <div class="window-title-bar">
+      <span>Contact</span>
+      <button class="close-btn">×</button>
+    </div>
+    <div class="window-content">
+      <p>Contact form coming soon!</p>
+    </div>
+  </div>
+
+  <div class="window" id="links-window">
+    <div class="window-title-bar">
+      <span>Links</span>
+      <button class="close-btn">×</button>
+    </div>
+    <div class="window-content">
+      <p>Links to my stuff (Tumblr, Twitch, etc.)</p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="main.js"></script>
 </body>
 </html>
