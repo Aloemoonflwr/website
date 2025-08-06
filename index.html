@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aero Desktop</title>
+  <title>Aero File Explorer</title>
   <link rel="stylesheet" href="desktop.css" />
+  <script defer src="main.js"></script>
 </head>
 <body>
   <div id="desktop">
@@ -26,11 +27,10 @@
     </div>
   </div>
 
-  <!-- Windows -->
   <div class="window" id="about-window">
     <div class="window-title-bar">
       <span>About Me</span>
-      <button class="close-btn">✖</button>
+      <button class="close-btn">✕</button>
     </div>
     <div class="window-content">
       <p>Welcome to my retro-style website!</p>
@@ -40,7 +40,7 @@
   <div class="window" id="commissions-window">
     <div class="window-title-bar">
       <span>Commissions</span>
-      <button class="close-btn">✖</button>
+      <button class="close-btn">✕</button>
     </div>
     <div class="window-content">
       <p>Commission menu goes here.</p>
@@ -50,7 +50,7 @@
   <div class="window" id="contact-window">
     <div class="window-title-bar">
       <span>Contact</span>
-      <button class="close-btn">✖</button>
+      <button class="close-btn">✕</button>
     </div>
     <div class="window-content">
       <p>Contact form coming soon!</p>
@@ -60,26 +60,23 @@
   <div class="window" id="links-window">
     <div class="window-title-bar">
       <span>Links</span>
-      <button class="close-btn">✖</button>
+      <button class="close-btn">✕</button>
     </div>
     <div class="window-content">
       <p>Links to my stuff (Tumblr, Twitch, etc.)</p>
     </div>
   </div>
 
-  <!-- Taskbar -->
   <div id="taskbar">
     <button id="start-btn">Start</button>
     <div id="start-menu">
       <ul>
         <li data-target="about-window">About</li>
-        <li data-target="links-window">Links</li>
         <li data-target="commissions-window">Commissions</li>
         <li data-target="contact-window">Contact</li>
+        <li data-target="links-window">Links</li>
       </ul>
     </div>
   </div>
-
-  <script src="main.js"></script>
 </body>
 </html>
