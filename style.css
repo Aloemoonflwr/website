@@ -288,3 +288,39 @@ a,
   width: 100%;
   height: auto;
 }
+@media (max-width: 768px) {
+  .modal {
+    width: 95vw !important;
+    height: auto !important;
+    max-height: 90vh;
+    left: 2.5vw !important;
+    top: 5vh !important;
+    font-size: 0.9rem;
+    resize: none !important;
+  }
+
+  .modal-content {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 1rem;
+  }
+
+  .modal-titlebar {
+    font-size: 1rem;
+  }
+
+  .carousel img {
+    width: 100%;
+    height: auto;
+  }
+
+  .taskbar {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .taskbar button {
+    flex: 1 1 45%;
+    margin: 0.25em;
+  }
+}
