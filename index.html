@@ -275,10 +275,10 @@
       <strong>🌱 Terrarium:</strong><br />
       Aloe sprout status: thriving 🌿
     </div>
-    <div class="widget sticky" id="note">
-      <strong>📝 Sticky Note:</strong><br />
-      <span id="sticky-note">Loading message...</span>
-    </div>
+<div class="widget sticky-note">
+  <strong>📌 Sticky Note:</strong><br />
+  <span id="sticky-note-text"></span>
+</div>
   </div>
   
 <div class="modal" id="about">
@@ -704,12 +704,16 @@
       "This sticky note is sentient now. Run."
     ];
 
-    function updateStickyNote() {
-      const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-      document.getElementById('sticky-note').textContent = randomMessage;
+    function showRandomStickyNote() {
+    const randomIndex = Math.floor(Math.random() * stickyNotes.length);
+    const stickyNoteElement = document.getElementById("sticky-note-text");
+    if (stickyNoteElement) {
+      stickyNoteElement.textContent = stickyNotes[randomIndex];
     }
-    updateStickyNote();
+  }
 
+  window.addEventListener("DOMContentLoaded", showRandomStickyNote);
+     
     window.addEventListener("load", () => {
       setTimeout(() => {
         document.getElementById("boot-screen").style.display = "none";
