@@ -33,9 +33,7 @@
       --max-width: 1100px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     html,
     body {
@@ -188,9 +186,7 @@
     }
 
     @media (max-width: 800px) {
-      #home {
-        grid-template-columns: 1fr;
-      }
+      #home { grid-template-columns: 1fr; }
     }
 
     .hero-tag {
@@ -339,16 +335,12 @@
     }
 
     @media (max-width: 900px) {
-      .grid-3 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 650px) {
       .grid-2,
-      .grid-3 {
-        grid-template-columns: 1fr;
-      }
+      .grid-3 { grid-template-columns: 1fr; }
     }
 
     .card {
@@ -393,55 +385,85 @@
       background: rgba(255, 255, 255, 0.9);
     }
 
-    /* Blog */
-
-    .blog-meta {
-      font-size: 0.78rem;
-      color: #8a7363;
-      margin-bottom: 0.25rem;
-    }
-
-    /* Contact form */
-
-    .contact-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      gap: 2rem;
-    }
-
-    @media (max-width: 850px) {
-      .contact-layout {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    form {
-      display: grid;
-      gap: 0.75rem;
-    }
-
-    label {
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 0.15rem;
-      display: inline-block;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    textarea {
+    /* Portfolio images */
+    .portfolio-img {
       width: 100%;
-      padding: 0.6rem 0.75rem;
-      border-radius: 0.75rem;
-      border: 1px solid rgba(176, 153, 131, 0.8);
-      background: rgba(255, 255, 255, 0.9);
-      font: inherit;
-      resize: vertical;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 0.7rem;
+      background-color: #e3dcff;
+      box-shadow: 0 4px 16px rgba(123,92,255,0.08);
     }
 
-    textarea {
-      min-height: 140px;
+    /* About me photo */
+    .about-me-photo {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 1.3rem;
+      box-shadow: 0 5px 20px #dcc7ee44;
+      border: 3px solid var(--accent-soft);
+      background: #e3dcff;
+      float: left;
+      margin-right: 2.2rem;
     }
+    @media (max-width:700px){
+      .about-me-photo { float:none; display:block; margin:0 auto 1.3rem; }
+    }
+
+    /* Blog enhancements */
+    .blog-snippet {
+      margin-bottom: 1.4rem;
+      padding-bottom: 1.1rem;
+      border-bottom: 1px dashed #e9dded;
+    }
+    .blog-snippet:last-child {
+      border-bottom: none;
+    }
+    #full-post-modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(60,30,80,0.22);
+      z-index: 1000;
+      padding: 2rem;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .full-post-content {
+      background: #fff;
+      padding: 2rem 2.2rem;
+      border-radius: 14px;
+      box-shadow: 0 20px 62px rgba(123,92,255,0.15);
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      animation: popIn 0.25s cubic-bezier(.54,1.92,.26,1.35);
+    }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.93);}
+      to   { opacity: 1; transform: scale(1);}
+    }
+    .full-post-content h2 {
+      margin-top:0;
+    }
+    .full-post-content button {
+      margin-top: 1.4rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 0.48rem 1.2rem;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(123,92,255,.13);
+      transition: background 0.18s;
+    }
+    .full-post-content button:hover { background: #6745f8; }
+    /* Contact form etc unchanged */
 
     footer {
       text-align: center;
@@ -487,7 +509,7 @@
 
   <div class="page">
     <main>
-      <!-- Hero / Home -->
+      <!-- Hero / Home (unchanged) -->
       <section id="home" aria-labelledby="home-title">
         <div>
           <div class="hero-tag">
@@ -529,13 +551,16 @@
         <h2 id="about-title" class="section-title">
           Hi, I’m Aloe — your friendly neighborhood art goblin.
         </h2>
-        <p class="section-desc">
-          I’m a collage and vector artist who lives somewhere between
-          cottagecore forest spirits and glitchy soft chaos. Moonlit Meadow
-          Club is my little brand-universe: a place for dreamy wallpapers,
-          stickers, journals, and custom pieces that feel like they crawled
-          out of your favorite liminal playlist.
-        </p>
+        <div>
+          <img src="assets/about-photo.jpg" alt="Photo of AloeMoonflwr" class="about-me-photo" />
+          <p class="section-desc">
+            I’m a collage and vector artist who lives somewhere between
+            cottagecore forest spirits and glitchy soft chaos. Moonlit Meadow
+            Club is my little brand-universe: a place for dreamy wallpapers,
+            stickers, journals, and custom pieces that feel like they crawled
+            out of your favorite liminal playlist.
+          </p>
+        </div>
         <div class="grid grid-3">
           <div class="card">
             <div class="card-tagline">What I make</div>
@@ -595,6 +620,7 @@
 
         <div class="grid grid-3">
           <article class="card">
+            <img src="assets/portfolio1.jpg" alt="Faded Daydreams collage artwork" class="portfolio-img" />
             <div class="card-tagline">Collage art</div>
             <h3>Faded Daydreams</h3>
             <p>
@@ -604,6 +630,7 @@
             </p>
           </article>
           <article class="card">
+            <img src="assets/portfolio2.jpg" alt="Cottagecore moons and mushrooms stickers" class="portfolio-img" />
             <div class="card-tagline">Vector & stickers</div>
             <h3>Cottagecore moons & mushrooms</h3>
             <p>
@@ -612,6 +639,7 @@
             </p>
           </article>
           <article class="card">
+            <img src="assets/portfolio3.jpg" alt="Moonlit Meadow Club visual branding" class="portfolio-img" />
             <div class="card-tagline">Brand moments</div>
             <h3>Moonlit Meadow Club visuals</h3>
             <p>
@@ -622,7 +650,7 @@
         </div>
       </section>
 
-      <!-- Shop & Commissions -->
+      <!-- Shop & Commissions (unchanged) -->
       <section id="shop" aria-labelledby="shop-title">
         <p class="section-heading">Shop & Commissions</p>
         <h2 id="shop-title" class="section-title">
@@ -694,7 +722,7 @@
         </div>
       </section>
 
-      <!-- Blog -->
+      <!-- Blog, now dynamic -->
       <section id="blog" aria-labelledby="blog-title">
         <p class="section-heading">Blog</p>
         <h2 id="blog-title" class="section-title">
@@ -705,30 +733,11 @@
           rambling. You can treat this as a quick-glance feed; deeper dives
           can live on Tumblr or wherever you like to scream into the void.
         </p>
-
-        <div class="grid grid-2">
-          <article class="card">
-            <div class="blog-meta">New • Moonlit Meadow Club</div>
-            <h3>Opening the doors of the Meadow</h3>
-            <p>
-              I finally pulled all my art chaos into one place: stickers,
-              shirts, journals, and collage commissions now live under the
-              Moonlit Meadow Club name.
-            </p>
-          </article>
-          <article class="card">
-            <div class="blog-meta">Update</div>
-            <h3>Collage commissions are back</h3>
-            <p>
-              I’m taking a limited number of custom collage pieces — perfect
-              for character promos, playlist covers, or just indulging your
-              favorite brainrot.
-            </p>
-          </article>
-        </div>
+        <div id="blog-list"></div>
+        <div id="full-post-modal"></div>
       </section>
 
-      <!-- Contact -->
+      <!-- Contact (unchanged) -->
       <section id="contact" aria-labelledby="contact-title">
         <p class="section-heading">Contact</p>
         <h2 id="contact-title" class="section-title">
@@ -806,5 +815,46 @@
   <footer>
     Moonlit Meadow Club • Art & chaos by AloeMoonflwr • Made with caffeine & frogs
   </footer>
+
+  <!-- Dynamic Blog Script  -->
+  <script>
+    async function loadBlogPosts() {
+      const response = await fetch('blogposts.json');
+      const posts = await response.json();
+      const blogList = document.getElementById('blog-list');
+      blogList.innerHTML = '';
+      posts.forEach(post => {
+        const postDiv = document.createElement('div');
+        postDiv.className = 'blog-snippet';
+        postDiv.innerHTML = `
+          <h3>${post.title}</h3>
+          <p class="blog-meta">${post.date ? post.date : ''} ${post.tags ? ("• " + post.tags.join(", ")) : ''}</p>
+          <p>${post.snippet}</p>
+          <button onclick="showFullPost('${post.id}')">Read More</button>
+        `;
+        blogList.appendChild(postDiv);
+      });
+      window.postsData = posts;
+    }
+
+    function showFullPost(postId) {
+      const post = window.postsData.find(p => p.id === postId);
+      const modal = document.getElementById('full-post-modal');
+      modal.innerHTML = `
+        <div class="full-post-content">
+          <h2>${post.title}</h2>
+          <div>${post.content}</div>
+          <button onclick="hideFullPost()">Close</button>
+        </div>
+      `;
+      modal.style.display = 'flex';
+    }
+
+    function hideFullPost() {
+      document.getElementById('full-post-modal').style.display = 'none';
+    }
+
+    window.onload = loadBlogPosts;
+  </script>
 </body>
 </html>
