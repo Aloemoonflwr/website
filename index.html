@@ -590,6 +590,115 @@
   font-weight: 600;
   font-size: 1.05rem;
 }
+    .comms-queue {
+  margin-top: 2rem;
+  padding: 1.25rem 1.1rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(205, 184, 161, 0.6);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.03);
+}
+
+.comms-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.1rem;
+}
+
+.comms-desc {
+  margin: 0 0 1rem;
+  font-size: 0.88rem;
+  color: #6b5242;
+}
+
+.comms-footnote {
+  margin-top: 1rem;
+  font-size: 0.78rem;
+  color: #8a7262;
+}
+
+/* Individual commission cards */
+
+.commission-card {
+  padding: 0.75rem 0.7rem 0.85rem;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(200, 177, 152, 0.7);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.02);
+  margin-bottom: 0.65rem;
+}
+
+.commission-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  align-items: baseline;
+  margin-bottom: 0.3rem;
+}
+
+.commission-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.commission-type {
+  font-size: 0.8rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--radius-pill);
+  background: rgba(227, 220, 255, 0.7);
+  border: 1px solid rgba(123, 92, 255, 0.5);
+  white-space: nowrap;
+}
+
+/* Progress bar */
+
+.progress-row {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0.3rem 0 0.1rem;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--bg-alt);
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    var(--accent-secondary),
+    var(--accent)
+  );
+  box-shadow: 0 0 10px rgba(123, 92, 255, 0.35);
+  transition: width 0.3s ease;
+}
+
+.progress-percent {
+  font-size: 0.75rem;
+  color: #7b6455;
+}
+
+.progress-tag {
+  font-size: 0.75rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px dashed rgba(196, 169, 145, 0.8);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+.progress-tag span.emoji {
+  font-size: 0.9rem;
+}
   </style>
 </head>
 <body>
@@ -898,7 +1007,22 @@
   <div class="badge-row">
     <span class="badge">Updated policies</span>
     <span class="badge">Commercial options</span>
-  </div>
+  </div> 
+    <div class="comms-queue">
+  <h3 class="comms-title">Current Commission Queue</h3>
+  <p class="comms-desc">
+    A quick peek at where things are in the Meadow. If you don’t see your name
+    here yet, it either hasn’t been confirmed or it’s already wrapped up. 💌
+  </p>
+
+  <div id="commission-queue-list"></div>
+
+  <p class="comms-footnote">
+    Need a status update or have a question about your spot? 
+    You can always reach out via my contact form or Tumblr DMs.
+  </p>
+</div>
+        
   <p>
     <a href="https://www.notion.so/Moonlit-Meadow-Club-Commission-Terms-of-Service-2b96753132a48076bc60c79ee90d81b6?source=copy_link" target="_blank" rel="noopener noreferrer">
       → Read full Terms of Service
@@ -1052,8 +1176,102 @@
       document.getElementById('full-post-modal').style.display = 'none';
     }
 
-    window.onload = loadBlogPosts;
-  </script> 
+    window.addEventListener('load', () => {
+  loadBlogPosts();
+  renderCommissionQueue();
+});
+  </script>
+  <script>
+  // 💌 Edit this array to update your queue
+  const commissionQueue = [
+    {
+      id: "c1",
+      name: "@mooncryptid – character promo",
+      type: "Collage commission",
+      stage: "Sketching & base layout",
+      progress: 40
+    },
+    {
+      id: "c2",
+      name: "Playlist cover for @soft-spores",
+      type: "Collage commission",
+      stage: "Final polish & textures",
+      progress: 80
+    },
+    {
+      id: "c3",
+      name: "Icon pack for @ivy-library",
+      type: "Icon set",
+      stage: "In queue",
+      progress: 10
+    }
+    // Add / remove entries as needed
+  ];
+
+  function getStageTag(progress, stageText) {
+    // choose a cute emoji + label based on progress
+    if (progress >= 100) {
+      return { emoji: "🌟", label: "Wrapped & delivered" };
+    } else if (progress >= 75) {
+      return { emoji: "✨", label: "Final touches" };
+    } else if (progress >= 50) {
+      return { emoji: "🎨", label: "Rendering details" };
+    } else if (progress >= 25) {
+      return { emoji: "📝", label: "Building the layout" };
+    } else {
+      return { emoji: "🌱", label: "In queue / gathering refs" };
+    }
+  }
+
+  function renderCommissionQueue() {
+    const listEl = document.getElementById("commission-queue-list");
+    if (!listEl) return;
+
+    listEl.innerHTML = "";
+
+    if (!commissionQueue.length) {
+      listEl.innerHTML = `
+        <p style="font-size:0.86rem; color:#7b6455;">
+          No active commissions in the queue right now — the meadow is quiet. 🌙
+        </p>
+      `;
+      return;
+    }
+
+    commissionQueue.forEach(item => {
+      const wrapper = document.createElement("article");
+      wrapper.className = "commission-card";
+
+      const safeProgress =
+        typeof item.progress === "number"
+          ? Math.max(0, Math.min(100, item.progress))
+          : 0;
+
+      const stageTag = getStageTag(safeProgress, item.stage);
+
+      wrapper.innerHTML = `
+        <div class="commission-header">
+          <div class="commission-name">${item.name}</div>
+          <div class="commission-type">${item.type}</div>
+        </div>
+        <div class="progress-row">
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: ${safeProgress}%;"></div>
+          </div>
+          <div class="progress-percent">${safeProgress}%</div>
+        </div>
+        <div class="progress-tag">
+          <span class="emoji">${stageTag.emoji}</span>
+          <span>${stageTag.label}${
+            item.stage ? " • " + item.stage : ""
+          }</span>
+        </div>
+      `;
+
+      listEl.appendChild(wrapper);
+    });
+  }
+</script>
   <script>
 function showPortfolioImage(imgUrl, title) {
   document.getElementById('portfolio-modal-img').src = imgUrl;
@@ -1065,6 +1283,6 @@ function hidePortfolioModal() {
   document.getElementById('portfolio-modal').style.display = 'none';
   document.getElementById('portfolio-modal-img').src = '';
 }
-</script>
+</script> 
 </body>
 </html>
