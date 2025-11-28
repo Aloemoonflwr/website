@@ -872,7 +872,7 @@
           <h3>${post.title}</h3>
           <p class="blog-meta">${post.date ? post.date : ''} ${post.tags ? ("• " + post.tags.join(", ")) : ''}</p>
           <p>${post.snippet}</p>
-          <button onclick="showFullPost('${post.id}')">Read More</button>
+          <button class="btn btn-primary" onclick="showFullPost('${post.id}')">Read More</button>
         `;
         blogList.appendChild(postDiv);
       });
