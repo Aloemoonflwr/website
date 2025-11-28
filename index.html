@@ -415,14 +415,40 @@
     }
 
     /* Blog enhancements */
-    .blog-snippet {
-      margin-bottom: 1.4rem;
-      padding-bottom: 1.1rem;
-      border-bottom: 1px dashed #e9dded;
-    }
-    .blog-snippet:last-child {
-      border-bottom: none;
-    }
+    .blog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.blog-card {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: var(--radius-md);
+  padding: 1.15rem 1.35rem;
+  border: 1px solid rgba(205, 184, 161, 0.55);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.03);
+}
+
+.blog-card h3 {
+  margin: 0 0 0.3rem;
+  font-size: 1.1rem;
+}
+
+.blog-meta {
+  font-size: 0.8rem;
+  color: #8a7262;
+  margin: 0 0 0.75rem;
+}
+
+.blog-card p {
+  margin: 0 0 0.5rem;
+  font-size: 0.92rem;
+  color: #654d3c;
+}
+
+.blog-card .btn {
+  margin-top: 0.2rem;
+}
     #full-post-modal {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -783,7 +809,7 @@
               <span class="badge">Worldwide shipping</span>
             </div>
             <p>
-              <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://aloemoonflwr.etsy.com" target="_blank" rel="noopener noreferrer">
                 → Visit my Etsy shop
               </a>
             </p>
@@ -802,9 +828,9 @@
             </div>
             <p>
               <!-- Update these with your real links -->
-              <a href="#" target="_blank" rel="noopener noreferrer">→ Payhip</a>
+              <a href="#" target="https://payhip.com/aloemoonflwr" rel="noopener noreferrer">→ Payhip</a>
               &nbsp;·&nbsp;
-              <a href="#" target="_blank" rel="noopener noreferrer">Gumroad</a>
+              <a href="#" target="https://aloemoonflwr.gumroad.com" rel="noopener noreferrer">Gumroad</a>
             </p>
           </div>
 
@@ -840,7 +866,7 @@
           rambling. You can treat this as a quick-glance feed; deeper dives
           can live on Tumblr or wherever you like to scream into the void.
         </p>
-        <div id="blog-list"></div>
+        <div id="blog-list" class="blog-list"></div>
         <div id="full-post-modal"></div>
       </section>
 
@@ -859,7 +885,7 @@
         <div class="contact-layout">
           <div>
             <form
-              action="https://formspree.io/f/xnnpwewz"
+              action="https://submit-form.com/yEBZ2teOk"
               method="POST"
             >
               <div>
@@ -926,23 +952,34 @@
   <!-- Dynamic Blog Script  -->
   <script>
     async function loadBlogPosts() {
-      const response = await fetch('blogposts.json');
-      const posts = await response.json();
-      const blogList = document.getElementById('blog-list');
-      blogList.innerHTML = '';
-      posts.forEach(post => {
-        const postDiv = document.createElement('div');
-        postDiv.className = 'blog-snippet';
-        postDiv.innerHTML = `
-          <h3>${post.title}</h3>
-          <p class="blog-meta">${post.date ? post.date : ''} ${post.tags ? ("• " + post.tags.join(", ")) : ''}</p>
-          <p>${post.snippet}</p>
-          <button class="btn btn-primary" onclick="showFullPost('${post.id}')">Read More</button>
-        `;
-        blogList.appendChild(postDiv);
-      });
-      window.postsData = posts;
-    }
+  const response = await fetch('blogposts.json');
+  const posts = await response.json();
+
+  const blogList = document.getElementById('blog-list');
+  blogList.innerHTML = '';
+
+  posts.forEach(post => {
+    const postDiv = document.createElement('article');
+    postDiv.className = 'blog-card';
+
+    const tagsText = post.tags && post.tags.length
+      ? ' • ' + post.tags.join(', ')
+      : '';
+
+    postDiv.innerHTML = `
+      <h3>${post.title}</h3>
+      <p class="blog-meta">${post.date || ''}${tagsText}</p>
+      <p>${post.snippet}</p>
+      <button class="btn btn-primary" onclick="showFullPost('${post.id}')">
+        Read More
+      </button>
+    `;
+
+    blogList.appendChild(postDiv);
+  });
+
+  window.postsData = posts;
+}
 
     function showFullPost(postId) {
       const post = window.postsData.find(p => p.id === postId);
