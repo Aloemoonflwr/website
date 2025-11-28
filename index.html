@@ -684,48 +684,68 @@
       </section>
 
       <!-- Portfolio -->
-      <section id="portfolio" aria-labelledby="portfolio-title">
-        <p class="section-heading">Portfolio</p>
-        <h2 id="portfolio-title" class="section-title">
-          Selected work from the Meadow.
-        </h2>
-        <p class="section-desc">
-          A tiny snapshot of the things I make — full pieces live on my
-          socials and in my shop, but this gives you a feel for my style and
-          the kinds of projects I love taking on.
-        </p>
+     <section id="portfolio" aria-labelledby="portfolio-title">
+  <p class="section-heading">Portfolio</p>
+  <h2 id="portfolio-title" class="section-title">
+    Selected work from the Meadow.
+  </h2>
+  <p class="section-desc">
+    A tiny snapshot of the things I make — full pieces live on my
+    socials and in my shop, but this gives you a feel for my style and
+    the kinds of projects I love taking on.
+  </p>
 
-        <div class="grid grid-3">
-          <article class="card">
-            <img src="https://i.ibb.co/Y4pkHct2/cottagecorethingie.png" alt="Cottagecore Frog Collage Design" class="portfolio-img" />
-            <div class="card-tagline">Collage art</div>
-            <h3>Covered In Ivy</h3>
-            <p>
-              A gentle ode to growth, poetry, and still moments in nature. 
-              This collage features a studious little frog perched on vintage mushrooms, 
-              surrounded by dreamy forest paths, blooming wildflowers, 
-              and scraps of old paper and ivy. With soft cottagecore vibes and storybook charm, 
-              “Covered in Ivy” invites you to pause, breathe, and wander a little slower.
-            </p>
-          </article>
-          <article class="card">
-            <img src="assets/portfolio2.jpg" alt="Cottagecore moons and mushrooms stickers" class="portfolio-img" />
-            <div class="card-tagline">Vector & stickers</div>
-            <h3>Cottagecore moons & mushrooms</h3>
-            <p>
-              Clean, cozy vector designs featuring moons, mushrooms, flowers,
-              and stars — perfect for stickers, shirts, and tote bags.
-            </p>
-          </article>
-          <article class="card">
-            <img src="assets/portfolio3.jpg" alt="Moonlit Meadow Club visual branding" class="portfolio-img" />
-            <div class="card-tagline">Brand moments</div>
-            <h3>Moonlit Meadow Club visuals</h3>
-            <p>
-              Logo work, badges, and layout pieces for the Moonlit Meadow
-              Club brand: soft gradients, playful type, and a little chaos.
-            </p>
-          </article> 
+  <div class="grid grid-3">
+    <article class="card">
+      <img
+        src="https://i.ibb.co/Y4pkHct2/cottagecorethingie.png"
+        alt="Covered In Ivy"
+        class="portfolio-img"
+        style="cursor:pointer"
+        onclick="showPortfolioImage('https://i.ibb.co/Y4pkHct2/cottagecorethingie.png', 'Covered In Ivy')"
+      />
+      <div class="card-tagline">Collage art</div>
+      <h3>Covered In Ivy</h3>
+      <p>
+       A gentle ode to growth, poetry, and still moments in nature. 
+        This collage features a studious little frog perched on vintage mushrooms, surrounded by dreamy 
+        forest paths, blooming wildflowers, and scraps of old paper and ivy. 
+        With soft cottagecore vibes and storybook charm, “Covered in Ivy” invites you to pause, 
+        breathe, and wander a little slower.
+      </p>
+    </article>
+    <article class="card">
+      <img
+        src="assets/portfolio2.jpg"
+        alt="Cottagecore moons and mushrooms stickers"
+        class="portfolio-img"
+        style="cursor:pointer"
+        onclick="showPortfolioImage('assets/portfolio2.jpg', 'Cottagecore moons & mushrooms')"
+      />
+      <div class="card-tagline">Vector & stickers</div>
+      <h3>Cottagecore moons & mushrooms</h3>
+      <p>
+        Clean, cozy vector designs featuring moons, mushrooms, flowers,
+        and stars — perfect for stickers, shirts, and tote bags.
+      </p>
+    </article>
+    <article class="card">
+      <img
+        src="assets/portfolio3.jpg"
+        alt="Moonlit Meadow Club visual branding"
+        class="portfolio-img"
+        style="cursor:pointer"
+        onclick="showPortfolioImage('assets/portfolio3.jpg', 'Moonlit Meadow Club visuals')"
+      />
+      <div class="card-tagline">Brand moments</div>
+      <h3>Moonlit Meadow Club visuals</h3>
+      <p>
+        Logo work, badges, and layout pieces for the Moonlit Meadow
+        Club brand: soft gradients, playful type, and a little chaos.
+      </p>
+    </article>
+  </div>
+</section>
           <div id="portfolio-modal" style="display:none;">
             <div class="portfolio-modal-backdrop" onclick="hidePortfolioModal()"></div>
             <div class="portfolio-modal-content" id="portfolio-modal-content">
