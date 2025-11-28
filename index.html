@@ -527,7 +527,42 @@
       border-radius: var(--radius-pill);
       background: rgba(255, 255, 255, 0.85);
       border: 1px solid rgba(196, 169, 145, 0.7);
-    }
+    } 
+
+    #portfolio-modal {
+  position: fixed; z-index: 3000;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: none; /* toggled on open */
+  align-items: center; justify-content: center;
+}
+.portfolio-modal-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(50,30,60,0.38);
+}
+.portfolio-modal-content {
+  position: relative;
+  z-index: 1;
+  margin: auto;
+  background: #fff;
+  box-shadow: 0 12px 54px rgba(0,0,0,0.18);
+  border-radius: 14px;
+  padding: 2.2rem 1.7rem;
+  text-align: center;
+  max-width: 90vw; max-height: 90vh;
+  display: flex; flex-direction: column; align-items: center;
+}
+.portfolio-modal-content img {
+  max-width: 76vw;
+  max-height: 56vh;
+  border-radius: 8px;
+  box-shadow: 0 2px 22px #6c4cff22;
+  margin-bottom: 1rem;
+}
+#portfolio-modal-title {
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
   </style>
 </head>
 <body>
@@ -690,7 +725,14 @@
               Logo work, badges, and layout pieces for the Moonlit Meadow
               Club brand: soft gradients, playful type, and a little chaos.
             </p>
-          </article>
+          </article> 
+          <div id="portfolio-modal" style="display:none;">
+            <div class="portfolio-modal-backdrop" onclick="hidePortfolioModal()"></div>
+            <div class="portfolio-modal-content" id="portfolio-modal-content">
+              <img id="portfolio-modal-img" src="" alt="">
+              <div id="portfolio-modal-title"></div>
+          <button class="btn btn-primary" onclick="hidePortfolioModal()">Close</button>
+        </div>
         </div>
       </section>
 
@@ -899,6 +941,18 @@
     }
 
     window.onload = loadBlogPosts;
-  </script>
+  </script> 
+  <script>
+function showPortfolioImage(imgUrl, title) {
+  document.getElementById('portfolio-modal-img').src = imgUrl;
+  document.getElementById('portfolio-modal-title').textContent = title || '';
+  document.getElementById('portfolio-modal').style.display = 'flex';
+}
+
+function hidePortfolioModal() {
+  document.getElementById('portfolio-modal').style.display = 'none';
+  document.getElementById('portfolio-modal-img').src = '';
+}
+</script>
 </body>
 </html>
