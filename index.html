@@ -465,15 +465,47 @@
     .full-post-content button:hover { background: #6745f8; }
     /* Contact form etc unchanged */
 
-    form {
-  display: grid;
-  gap: 0.75rem;
-}
+        /* Contact form */
 
-form > div {
-  display: flex;
-  flex-direction: column;
-}
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 2rem;
+    }
+
+    @media (max-width: 850px) {
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    form {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+      display: inline-block;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(176, 153, 131, 0.8);
+      background: rgba(255, 255, 255, 0.9);
+      font: inherit;
+      resize: vertical;
+    }
+
+    textarea {
+      min-height: 140px;
+    }
 
     footer {
       text-align: center;
