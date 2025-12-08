@@ -741,6 +741,74 @@
   background: #ff90e8; 
   color: #000;
   border: 1px solid #000;
+} 
+    /* --- New Styles for Featured Products --- */
+
+.product-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* Space between different products */
+}
+
+.product-card-horizontal {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(205, 184, 161, 0.55);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.03);
+  
+  /* This makes it side-by-side */
+  display: grid;
+  grid-template-columns: 300px 1fr; /* Image is 300px wide, Text takes the rest */
+  gap: 2rem;
+  align-items: start;
+}
+
+.product-img-large {
+  width: 100%;
+  height: 300px; /* Taller image to show off the stickers */
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(176, 153, 131, 0.2);
+  background-color: #fdfdfd;
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.product-price {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.product-desc-list {
+  line-height: 1.6;
+  color: #5e4a3e;
+  margin-bottom: 1.5rem;
+  white-space: pre-wrap; /* Preserves your formatting/spacing */
+}
+
+/* Make the buttons sit at the bottom of the details side */
+.product-actions {
+  margin-top: auto; 
+  display: flex;
+  gap: 1rem;
+}
+
+/* --- Mobile Version (Screens smaller than 768px) --- */
+@media (max-width: 768px) {
+  .product-card-horizontal {
+    grid-template-columns: 1fr; /* Stack vertically on phones */
+    gap: 1rem;
+  }
+  .product-img-large {
+    height: 250px;
+  }
 }
   </style>
 </head>
@@ -1057,49 +1125,46 @@
     </a>
   </p>
 </div> 
-          <div style="margin-top: 3rem;">
+<div style="margin-top: 3rem;">
   <h3 class="section-title" style="font-size: 1.4rem;">Featured Digital Downloads</h3>
   <p class="section-desc">Pick your preferred platform to grab these goodies.</p>
 
-  <div class="grid grid-3">
+  <div class="product-list-container">
 
-    <article class="card" style="display:flex; flex-direction:column;">
+    <article class="product-card-horizontal">
       <img 
         src="https://payhip.com/cdn-cgi/image/format=auto/https://pe56d.s3.amazonaws.com/o_1jbgb83ih145vbbk1v2e3a01vte1a.png" 
-        alt="Product Name" 
-        class="product-img"
+        alt="Digital Planner Sticker Pack" 
+        class="product-img-large"
       />
-      <span class="price-tag">$5.00</span>
-      <h3>✨ 30+ Digital Planner Sticker Pack — Goodnotes Compatible | Pre-Cropped PNGs</h3>
-      <p style="flex-grow:1;">
-        Give your digital planner a cute cottagecore glow-up! This pack includes 30+ hand-designed PNG stickers perfect for Goodnotes, Notability, Xodo, and any app that supports PNGs.
-  This set features:
-🌸 Habit tracker
-🌿 Sticky notes in multiple styles
-⭐ Washi strips
-🍄 Labels + tabs (“To-Do,” “Notes,” “Important,” etc.)
-🐈 Cottagecore doodles (cat, moon, stars, mushrooms, flowers & more!)
-🎀 Ribbons + decorative elements
-📱 PLUS: Everything comes pre-cropped and ready to use!
-
-Perfect for…
-– Digital Journaling
-– Goodnotes planners
-– School or study notes
-– Creative organization
-– Cottagecore / cozy aesthetic planning
-      </p>
       
-      <div class="buy-buttons-row">
-        <a href="https://payhip.com/b/5ntOj" target="_blank" class="btn btn-primary btn-small">
-          Buy on Payhip
-        </a>
-        <a href="https://aloemoonflwr.gumroad.com/l/bhxom" target="_blank" class="btn btn-ghost btn-small">
-          Gumroad
-        </a>
+      <div class="product-details">
+        <div class="product-price">$5.00</div>
+        <h3>30+ Digital Planner Sticker Pack</h3>
+        
+        <div class="product-desc-list">
+Give your digital planner a cute cottagecore glow-up! 
+This pack includes 30+ hand-designed PNG stickers perfect for Goodnotes, Notability, and Xodo.
+
+Features:
+🍓 Habit trackers & Sticky notes
+🌟 Washi tapes & Labels
+🍄 Cottagecore doodles (cats, moons, mushrooms)
+🎨 Pre-cropped and ready to use!
+        </div>
+        
+        <div class="product-actions">
+           <a href="https://payhip.com/b/5ntOj" target="_blank" class="btn btn-primary">
+             Buy on Payhip
+           </a>
+           <a href="https://aloemoonflwr.gumroad.com/l/bhxom" target="_blank" class="btn btn-ghost">
+             Gumroad
+           </a>
+        </div>
       </div>
     </article>
-  </div>
+
+    </div>
 </div>
         </div>
       </section> 
