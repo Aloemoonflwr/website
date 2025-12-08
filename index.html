@@ -731,83 +731,90 @@
   white-space: nowrap;
 }
 
-/* Optional: specific brand colors if you want them to stand out, 
-   otherwise use your existing .btn-primary and .btn-ghost */
-.btn-payhip {
-  background: #2b2b2b;
-  color: #fff;
-}
-.btn-gumroad {
-  background: #ff90e8; 
-  color: #000;
-  border: 1px solid #000;
-} 
-    /* --- New Styles for Featured Products --- */
+/* --- REVISED Styles for Wide Product Cards --- */
 
-.product-list-container {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem; /* Space between different products */
-}
-
-.product-card-horizontal {
+/* The main container for the whole card */
+.product-card-wide {
   background: rgba(255, 255, 255, 0.96);
   border: 1px solid rgba(205, 184, 161, 0.55);
   border-radius: var(--radius-md);
-  padding: 1.5rem;
+  padding: 2rem; /* More internal padding */
   box-shadow: 0 10px 18px rgba(0, 0, 0, 0.03);
   
-  /* This makes it side-by-side */
-  display: grid;
-  grid-template-columns: 300px 1fr; /* Image is 300px wide, Text takes the rest */
-  gap: 2rem;
-  align-items: start;
+  /* FLEXBOX SETUP */
+  display: flex;
+  flex-wrap: wrap; /* This allows items to stack if the screen is too small */
+  gap: 2.5rem; /* Space between image and text blocks */
+  align-items: center; /* Vertically center the text block next to image */
+}
+
+/* The wrapper for the image */
+.product-image-block {
+  /* Flex shorthand: grow | shrink | basis */
+  /* Basis of 320px means it wants to be at least that wide */
+  flex: 1 1 320px; 
+  max-width: 450px; /* Don't let the image get too gigantic on huge screens */
 }
 
 .product-img-large {
   width: 100%;
-  height: 300px; /* Taller image to show off the stickers */
-  object-fit: cover;
+  height: auto; /* Auto height maintains the image aspect ratio so it doesn't stretch */
   border-radius: var(--radius-md);
   border: 1px solid rgba(176, 153, 131, 0.2);
-  background-color: #fdfdfd;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
-.product-details {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+/* The wrapper for the text details */
+.product-details-block {
+  /* Basis of 400px means text area prefers more width than the image */
+  flex: 2 1 400px; 
+  min-width: 300px; /* Ensure text never gets squashed smaller than this */
 }
 
 .product-price {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: var(--accent);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  display: block;
 }
 
 .product-desc-list {
-  line-height: 1.6;
+  line-height: 1.7;
   color: #5e4a3e;
-  margin-bottom: 1.5rem;
-  white-space: pre-wrap; /* Preserves your formatting/spacing */
+  margin-bottom: 2rem;
+  white-space: pre-wrap; 
+  font-size: 1rem;
 }
 
-/* Make the buttons sit at the bottom of the details side */
+/* Buttons */
 .product-actions {
-  margin-top: auto; 
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
-/* --- Mobile Version (Screens smaller than 768px) --- */
-@media (max-width: 768px) {
-  .product-card-horizontal {
-    grid-template-columns: 1fr; /* Stack vertically on phones */
-    gap: 1rem;
+/* Making buttons slightly bigger for this main view */
+.btn-med {
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+}
+
+/* --- Mobile Adjustments --- */
+/* On screens smaller than 750px, reduce padding so it fits better */
+@media (max-width: 750px) {
+  .product-card-wide {
+    padding: 1.25rem;
+    gap: 1.5rem;
   }
-  .product-img-large {
-    height: 250px;
+  /* On mobile, make the image block take full width */
+  .product-image-block {
+      flex: 1 1 100%;
+      max-width: 100%;
+  }
+   /* On mobile, remove the minimum width restriction on text so it fits the screen */
+  .product-details-block {
+      min-width: auto;
   }
 }
   </style>
@@ -1125,45 +1132,46 @@
     </a>
   </p>
 </div> 
-<div style="margin-top: 3rem;">
-  <h3 class="section-title" style="font-size: 1.4rem;">Featured Digital Downloads</h3>
-  <p class="section-desc">Pick your preferred platform to grab these goodies.</p>
+<div style="margin-top: 4rem; margin-bottom: 4rem;">
+  <h3 class="section-title" style="font-size: 1.6rem;">Featured Digital Downloads</h3>
+  <p class="section-desc" style="margin-bottom: 2rem;">
+    Pick your preferred platform to grab these goodies.
+  </p>
 
-  <div class="product-list-container">
+  <div style="display: flex; flex-direction: column; gap: 3rem;">
 
-    <article class="product-card-horizontal">
-      <img 
-        src="https://payhip.com/cdn-cgi/image/format=auto/https://pe56d.s3.amazonaws.com/o_1jbgb83ih145vbbk1v2e3a01vte1a.png" 
-        alt="Digital Planner Sticker Pack" 
-        class="product-img-large"
-      />
+    <article class="product-card-wide">
       
-      <div class="product-details">
-        <div class="product-price">$5.00</div>
-        <h3>30+ Digital Planner Sticker Pack</h3>
+      <div class="product-image-block">
+        <img 
+          src="https://payhip.com/cdn-cgi/image/format=auto/https://pe56d.s3.amazonaws.com/o_1jbgb83ih145vbbk1v2e3a01vte1a.png" 
+          alt="Digital Planner Sticker Pack Mockup" 
+          class="product-img-large"
+        />
+      </div>
+      
+      <div class="product-details-block">
+        <span class="product-price">$5.00</span>
+        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">30+ Digital Planner Sticker Pack</h3>
         
-        <div class="product-desc-list">
-Give your digital planner a cute cottagecore glow-up! 
-This pack includes 30+ hand-designed PNG stickers perfect for Goodnotes, Notability, and Xodo.
-
+        <div class="product-desc-list">Give your digital planner a cute cottagecore glow-up! This pack includes 30+ hand-designed PNG stickers perfect for Goodnotes, Notability, and Xodo.
 Features:
 🍓 Habit trackers & Sticky notes
 🌟 Washi tapes & Labels
 🍄 Cottagecore doodles (cats, moons, mushrooms)
-🎨 Pre-cropped and ready to use!
-        </div>
+🎨 Pre-cropped and ready to use!</div>
         
         <div class="product-actions">
-           <a href="https://payhip.com/b/5ntOj" target="_blank" class="btn btn-primary">
-             Buy on Payhip
+           <a href="https://payhip.com/b/5ntOj" target="_blank" class="btn btn-primary btn-med">
+             Payhip
            </a>
-           <a href="https://aloemoonflwr.gumroad.com/l/bhxom" target="_blank" class="btn btn-ghost">
+           <a href="https://aloemoonflwr.gumroad.com/l/bhxom" target="_blank" class="btn btn-ghost btn-med">
              Gumroad
            </a>
         </div>
       </div>
+      
     </article>
-
     </div>
 </div>
         </div>
